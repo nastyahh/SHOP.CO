@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Satoshi';
+  src: url(./assets/fonts/Satoshi-Regular.woff2);
+  font-weight: 400;
+}
+
+body {
+  font-family: 'Satoshi';
+}
