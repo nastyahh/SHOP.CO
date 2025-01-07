@@ -14,6 +14,7 @@ const Cart = sequelize.define('cart', {
 
 const CartProduct = sequelize.define('cart_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    quantity: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
 })
 
 const Product = sequelize.define('product', {
@@ -64,7 +65,7 @@ Product.belongsTo(Category);
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
 
-Product.hasMany(ProductInfo);
+Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
 
 Product.hasMany(CartProduct);
