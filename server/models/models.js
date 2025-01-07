@@ -21,7 +21,7 @@ const Product = sequelize.define('product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
     price: { type: DataTypes.INTEGER, allowNull: false },
-    rating: { type: DataTypes.INTEGER, defaultValue: 0 },
+    rating: { type: DataTypes.FLOAT, defaultValue: 0 },
     img: { type: DataTypes.STRING, allowNull: false },
 })
 
@@ -38,6 +38,7 @@ const Brand = sequelize.define('brand', {
 const Rating = sequelize.define('rating', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     rate: { type: DataTypes.INTEGER, allowNull: false },
+    productId: { type: DataTypes.INTEGER, allowNull: false },
 })
 
 const ProductInfo = sequelize.define('product_info', {
@@ -70,6 +71,9 @@ ProductInfo.belongsTo(Product);
 
 Product.hasMany(CartProduct);
 CartProduct.belongsTo(Product);
+
+Product.hasMany(Rating)
+Rating.belongsTo(Product)
 
 Category.belongsToMany(Brand, { through: CategoryBrand });
 Brand.belongsToMany(Category, { through: CategoryBrand })

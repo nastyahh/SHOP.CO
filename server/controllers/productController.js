@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const path = require('path')
-const { Product, ProductInfo } = require('../models/models')
+const { Product, ProductInfo, Rating } = require('../models/models')
 const ApiError = require('../error/ApiError');
 const { DESCRIBE } = require('sequelize/lib/query-types');
 
@@ -61,7 +61,9 @@ class ProductController {
             include: [{ model: ProductInfo, as: 'info' }]
         })
 
-        return res.json(product)
+        const ratings = await Rating.findAll({ where: { productId: id } })
+
+        return res.json({ product, ratings })
     }
 }
 
