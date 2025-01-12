@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0;
+  &_left,
+  &_menuWrap,
+  &_right {
+    display: flex;
+    align-items: center;
+  }
+  &_left {
+    gap: 40px;
+  }
+  &_right {
+    gap: 15px;
+  }
+  &_menuWrap {
+    gap: 24px;
+    & a {
+      color: #000;
+    }
+  }
+}

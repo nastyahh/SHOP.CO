@@ -1,0 +1,36 @@
+@import "../../colors.scss";
+
+.dropdown {
+  &Wrap {
+    position: relative;
+    &:hover .dropdown_menu {
+      display: flex;
+    }
+    &:hover .dropdown_arrow {
+      transform: rotate(180deg);
+    }
+  }
+  &_btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #000;
+  }
+  &_menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    bottom: -45px;
+    width: 200px;
+    background: $beige;
+    &__item {
+      color: #000;
+      &:hover {
+        color: $brown-color;
+      }
+    }
+  }
+  &_arrow {
+    transition: transform 0.3s ease;
+  }
+}

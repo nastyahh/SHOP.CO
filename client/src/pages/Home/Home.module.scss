@@ -1,0 +1,66 @@
+@import url(../../App.css);
+
+.banner {
+  background: url(../../assets/banner-bg.png) no-repeat center/cover;
+  color: #fff;
+  &_info {
+    padding: 103px 0 116px;
+  }
+  &_title {
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "Integral CF";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 64px;
+  }
+  &_textSmall {
+    max-width: 545px;
+    margin: 32px 0;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 22px;
+  }
+  &_btn {
+    display: inline-block;
+    width: 210px;
+    margin-bottom: 50px;
+  }
+  &_numbers {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    &__count {
+      margin-bottom: 3px;
+      font-size: 40px;
+      font-weight: 700;
+    }
+    &__descr {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 22px;
+    }
+  }
+}
+
+.runningLine {
+  width: 100%;
+  background: #000;
+  overflow: hidden;
+  &_wrap {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    animation: run 14s linear infinite;
+  }
+}
+
+@keyframes run {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

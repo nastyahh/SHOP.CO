@@ -1,0 +1,1 @@
+import { ReactComponent as Arrow } from "../../assets/dropdown-arrow.svg";

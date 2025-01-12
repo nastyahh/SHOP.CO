@@ -4,6 +4,20 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: 'Satoshi';
+  src: url(./assets/fonts/Satoshi-Bold.woff2);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Integral CF';
+  src: url(./assets/fonts/IntegralCF-Bold.woff2);
+  font-weight: 700;
+}
+
 body {
   font-family: 'Satoshi';
+  font-size: 16px;
+  font-weight: 400;
 }
