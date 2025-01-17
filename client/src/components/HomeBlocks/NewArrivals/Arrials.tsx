@@ -20,8 +20,6 @@ export const Arrivals = () => {
     return null;
   }
 
-  console.log(brandsData);
-
   const products = productsData.rows.slice(-12).map((product: Product) => {
     const brand = brandsData.find((b: Brand) => b.id === product.brandId);
     return {

@@ -1,11 +1,12 @@
 import { Link } from "react-router";
 import styles from "./ProductCard.module.scss";
 import { Product } from "../../types";
+import { PRODUCT_ROUTE } from "../../utils/consts";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className={styles.productCard}>
-      <Link to={`/${product.id}`}>
+      <Link to={`${PRODUCT_ROUTE}/${product.id}`}>
         <img
           src={`http://localhost:5000/${product.img}`}
           alt=""

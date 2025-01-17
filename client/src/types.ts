@@ -1,3 +1,9 @@
+import { ReactNode } from "react";
+
+export type Children = {
+  children?: ReactNode;
+};
+
 export type DropdownOption = {
   link: string;
   label: string;
