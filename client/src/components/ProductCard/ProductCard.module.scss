@@ -1,0 +1,13 @@
+.productCard {
+  &_img {
+    width: 248px;
+    height: 298px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  &_title {
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+  }
+}

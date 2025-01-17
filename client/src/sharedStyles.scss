@@ -1,3 +1,5 @@
+@import "../src/App.css";
+
 .container {
   max-width: 1370px;
   width: 100%;
@@ -19,4 +21,21 @@
     backdrop-filter: blur(10px);
     border: 1px solid #fff;
   }
+}
+
+.title {
+  margin-bottom: 55px;
+  text-align: center;
+  font-family: "Integral CF";
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.action-btn {
+  width: 218px;
+  padding: 16px 0;
+  font-weight: 500;
+  border-radius: 62px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
 }

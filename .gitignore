@@ -1,1 +1,4 @@
 server/.env
+client/.env
+
+server/static

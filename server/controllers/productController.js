@@ -7,12 +7,12 @@ const { DESCRIBE } = require('sequelize/lib/query-types');
 class ProductController {
     async create(req, res, next) {
         try {
-            const { name, price, brandId, categoryId, info } = req.body;
+            const { name, price, brandId, categoryId, info, gender } = req.body;
             const { img } = req.files;
             let fileName = uuid.v4() + ".jpg"; //генерируем айди для картинки
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
 
-            const product = await Product.create({ name, price, brandId, categoryId, img: fileName })
+            const product = await Product.create({ name, price, brandId, categoryId, img: fileName, gender })
 
             if (info) {
                 info = JSON.parse(info)

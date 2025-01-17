@@ -23,6 +23,7 @@ const Product = sequelize.define('product', {
     price: { type: DataTypes.INTEGER, allowNull: false },
     rating: { type: DataTypes.FLOAT, defaultValue: 0 },
     img: { type: DataTypes.STRING, allowNull: false },
+    gender: { type: DataTypes.STRING, allowNull: false },
 })
 
 const Category = sequelize.define('category', {

@@ -6,6 +6,7 @@ import { ReactComponent as CK } from "../../assets/calvin.svg";
 import { ReactComponent as Celine } from "../../assets/celine.svg";
 import { ReactComponent as Prada } from "../../assets/prada.svg";
 import { ReactComponent as Versace } from "../../assets/versace.svg";
+import { Arrivals } from "../../components/HomeBlocks/NewArrivals/Arrials";
 
 export const Home = () => {
   return (
@@ -53,6 +54,9 @@ export const Home = () => {
             <Versace className={styles.runningLine_item} />
           </div>
         </div>
+      </div>
+      <div id="arrivals" className={styles.arrivals}>
+        <Arrivals />
       </div>
     </div>
   );
