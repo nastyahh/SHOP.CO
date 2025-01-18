@@ -23,7 +23,9 @@ export const Header = () => {
     <div className="container">
       <header className={styles.header}>
         <div className={styles.header_left}>
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
           <div className={styles.header_menuWrap}>
             <DropdownMenu title="Shop" options={dropdownOptions} />
             <a href="#">On Sale</a>

@@ -14,7 +14,7 @@ export const Arrivals = () => {
   const { data: brandsData, isLoading: isBrandsLoading } =
     useGetBrandsQuery("");
 
-  const [visibleProducts, setVisibleProducts] = useState(1);
+  const [visibleProducts, setVisibleProducts] = useState(4);
 
   if (isProductsLoading || isBrandsLoading) {
     return null;
@@ -45,7 +45,7 @@ export const Arrivals = () => {
       {visibleProducts < products.length && (
         <button
           className="action-btn"
-          onClick={() => setVisibleProducts((prev) => prev + 1)}
+          onClick={() => setVisibleProducts((prev) => prev + 4)}
         >
           Load more
         </button>
