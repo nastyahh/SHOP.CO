@@ -32,3 +32,8 @@ export type Brand = {
   id: number;
   name: string;
 };
+
+export type CounterProps = {
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+};

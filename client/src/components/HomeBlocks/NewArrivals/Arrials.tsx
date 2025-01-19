@@ -7,6 +7,7 @@ import styles from "./Arrivals.module.scss";
 import { ProductCard } from "../../ProductCard/ProductCard";
 import { Brand, Product } from "../../../types";
 import { useState } from "react";
+import { findBrand } from "../../../utils/findBrand";
 
 export const Arrivals = () => {
   const { data: productsData, isLoading: isProductsLoading } =
@@ -21,10 +22,10 @@ export const Arrivals = () => {
   }
 
   const products = productsData.rows.slice(-12).map((product: Product) => {
-    const brand = brandsData.find((b: Brand) => b.id === product.brandId);
+    const brand = findBrand(brandsData, product.brandId);
     return {
       ...product,
-      brand: brand.name,
+      brand,
     };
   });
 

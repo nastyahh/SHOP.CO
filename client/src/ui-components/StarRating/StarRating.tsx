@@ -10,19 +10,24 @@ export const StarRating = ({ rating }: { rating: number }) => {
 
   return (
     <div className={styles.rating}>
-      {[...Array(fullStars)].map((_, index) => (
-        <StarFill
-          key={`full-${index}`}
-          className={`${styles.rating_starFill} ${styles.rating_star}`}
-        />
-      ))}
-      {halfStar && <StarHalf className={styles.rating_star} />}
-      {[...Array(emptyStars)].map((_, index) => (
-        <StarEmpty
-          key={`empty-${index}`}
-          className={`${styles.rating_starEmpty} ${styles.rating_star}`}
-        />
-      ))}
+      <div className={styles.rating_stars}>
+        {[...Array(fullStars)].map((_, index) => (
+          <StarFill
+            key={`full-${index}`}
+            className={`${styles.rating_starFill} ${styles.rating_star}`}
+          />
+        ))}
+        {halfStar && <StarHalf className={styles.rating_star} />}
+        {[...Array(emptyStars)].map((_, index) => (
+          <StarEmpty
+            key={`empty-${index}`}
+            className={`${styles.rating_starEmpty} ${styles.rating_star}`}
+          />
+        ))}
+      </div>
+      <div className={styles.rating_num}>
+        {rating}/<span>5</span>
+      </div>
     </div>
   );
 };

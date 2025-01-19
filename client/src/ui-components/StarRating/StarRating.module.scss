@@ -1,0 +1,12 @@
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &_num {
+    font-weight: 500;
+    & span {
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
