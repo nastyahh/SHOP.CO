@@ -110,3 +110,13 @@ label {
 legend {
   display: block;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  overflow-x: hidden;
+}

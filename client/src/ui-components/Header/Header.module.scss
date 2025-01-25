@@ -1,3 +1,5 @@
+@import "../../App.css";
+
 .header {
   width: 100%;
   display: flex;
@@ -15,12 +17,26 @@
   }
   &_right {
     gap: 15px;
+    & a {
+      height: 30px;
+    }
   }
   &_menuWrap {
     gap: 24px;
     & a {
       color: #000;
     }
+  }
+  &_user {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  &_user span {
+    color: #000;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 600;
   }
 }
 .link {

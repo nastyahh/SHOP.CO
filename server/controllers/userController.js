@@ -23,7 +23,11 @@ class UserController {
 
         const token = generateJwt(user.id, user.username, user.email, user.role)
 
-        return res.json({ token })
+        return res.json({
+            token, data: {
+                message: "You are successfully registered"
+            }
+        })
     }
 
     async login(req, res, next) {
@@ -36,10 +40,13 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Incorrect password'))
         }
-        console.log("login user", user)
         const token = generateJwt(user.id, user.username, user.email, user.role)
 
-        return res.json({ token })
+        return res.json({
+            token, data: {
+                message: "You are successfully login"
+            }
+        })
     }
 
     async checkAuth(req, res, next) {

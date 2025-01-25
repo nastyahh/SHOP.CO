@@ -1,0 +1,72 @@
+@import "../../colors.scss", "../../App.css";
+.auth {
+  position: relative;
+  padding: 100px 0 0;
+  &_form {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 150px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &_form input {
+    width: 90%;
+    padding: 15px 20px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 20px;
+    background: rgba(156, 173, 170, 0.85);
+    -webkit-box-shadow: 0px 0px 44px 7px rgba(93, 104, 102, 0.7) inset;
+    -moz-box-shadow: 0px 0px 44px 7px rgba(93, 104, 102, 0.7) inset;
+    box-shadow: 0px 0px 44px 7px rgba(93, 104, 102, 0.7) inset;
+    &:not(:last-of-type) {
+      margin-bottom: 10px;
+    }
+    &::placeholder {
+      color: #fff;
+    }
+  }
+  &_img {
+    position: absolute;
+  }
+  &_img_1 {
+    top: 70px;
+    right: -150px;
+    z-index: -1;
+  }
+  &_img_2 {
+    top: -65px;
+    left: -140px;
+    z-index: -1;
+  }
+  &_btn {
+    width: 200px;
+    margin: 25px 0 5px;
+    &:hover {
+      color: #000;
+    }
+  }
+  &_link {
+    color: #000;
+    font-weight: 700;
+  }
+  &_message {
+    position: absolute;
+    transform: translateY(-100%);
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #000;
+    background: #fff;
+    &.show {
+      transform: translateY(40%);
+    }
+  }
+}
+
+a.auth_link {
+  text-decoration: underline;
+}

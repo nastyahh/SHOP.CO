@@ -10,4 +10,19 @@
     font-size: 20px;
     font-weight: 700;
   }
+  &_price {
+    color: #000;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  & .rating_star {
+    width: 18px;
+  }
+  &_brand {
+    color: #000;
+    margin-bottom: 5px;
+  }
+  &_price {
+    margin-top: 5px;
+  }
 }

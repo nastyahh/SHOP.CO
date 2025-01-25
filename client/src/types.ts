@@ -37,3 +37,12 @@ export type CounterProps = {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export type LoginResponse = {
+  token: string;
+};
+
+export type LoginData = {
+  email: string;
+  password: string;
+};

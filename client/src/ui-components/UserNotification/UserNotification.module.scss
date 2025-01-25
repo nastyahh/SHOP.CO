@@ -1,0 +1,19 @@
+@import "../../colors.scss";
+
+.notification {
+  padding: 15px 40px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -500%);
+  transition: transform 0.4s ease-out;
+  font-size: 20px;
+  background: #fff;
+  border: 1px solid $gray;
+  border-radius: 20px;
+  &.show {
+    transform: translate(-50%, 40%);
+  }
+  &_text {
+    font-weight: 600;
+  }
+}

@@ -7,8 +7,16 @@ import { ReactComponent as Celine } from "../../assets/celine.svg";
 import { ReactComponent as Prada } from "../../assets/prada.svg";
 import { ReactComponent as Versace } from "../../assets/versace.svg";
 import { Arrivals } from "../../components/HomeBlocks/NewArrivals/Arrials";
+import { useEffect } from "react";
+import { useAppSelector } from "../../hooks/typedHooks";
 
 export const Home = () => {
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const user = useAppSelector((state) => state.user.userData);
+  useEffect(() => {
+    console.log("is auth:", isAuth);
+    console.log("user:", user);
+  }, []);
   return (
     <div className="homewrap">
       <div className={styles.banner}>

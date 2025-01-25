@@ -6,8 +6,12 @@ import { DropdownMenu } from "../../components/DropdownMenu/DropdownMenu";
 import styles from "./Header.module.scss";
 import { Link } from "react-router";
 import { Link as ScrollLink } from "react-scroll";
+import { useAppSelector } from "../../hooks/typedHooks";
 
 export const Header = () => {
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const user = useAppSelector((state) => state.user.userData);
+
   const dropdownOptions = [
     {
       link: "/men",
@@ -43,8 +47,14 @@ export const Header = () => {
           <Link to="/cart">
             <Cart />
           </Link>
-          <Link to="/profile">
-            <Profile />
+          <Link to={isAuth ? "/profile" : "/login"}>
+            {isAuth ? (
+              <div className={styles.header_user}>
+                <Profile /> <span>{user.username}</span>{" "}
+              </div>
+            ) : (
+              <Profile />
+            )}
           </Link>
         </div>
       </header>

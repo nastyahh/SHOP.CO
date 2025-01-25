@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import styles from "./ProductCard.module.scss";
 import { Product } from "../../types";
 import { PRODUCT_ROUTE } from "../../utils/consts";
+import { StarRating } from "../../ui-components/StarRating/StarRating";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -15,7 +16,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
 
         <p className={styles.productCard_title}>{product.name}</p>
         <p className={styles.productCard_brand}>{product.brand}</p>
-        <p className={styles.productCard_rating}>{product.rating}</p>
+        <StarRating rating={product.rating} starSize={18} />
         <p className={styles.productCard_price}>{product.price}$</p>
       </Link>
     </div>

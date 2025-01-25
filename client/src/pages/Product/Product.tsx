@@ -37,7 +37,7 @@ export const Product = () => {
             />
             <div className={styles.productDescr}>
               <h2 className={`title ${styles.product_name}`}>{name}</h2>
-              <StarRating rating={rating} />
+              <StarRating rating={rating} starSize={24} />
               <p className={styles.product_price}>{price}$</p>
               <div className={styles.product_sizeWrap}>
                 <h3 className={styles.product_label}>Choose Size</h3>
