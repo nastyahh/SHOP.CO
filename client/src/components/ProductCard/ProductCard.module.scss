@@ -1,7 +1,6 @@
 .productCard {
   &_img {
-    width: 248px;
-    height: 298px;
+    width: 100%;
     border-radius: 20px;
     margin-bottom: 16px;
   }
@@ -25,4 +24,11 @@
   &_price {
     margin-top: 5px;
   }
+  &_arrivals {
+    width: 24%;
+  }
+}
+
+.arrivals_card {
+  width: 24%;
 }

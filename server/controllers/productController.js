@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const path = require('path')
-const { Product, ProductInfo, Rating } = require('../models/models')
+const { Product, ProductInfo, Rating, Brand } = require('../models/models')
 const ApiError = require('../error/ApiError');
 const { DESCRIBE } = require('sequelize/lib/query-types');
 
@@ -58,7 +58,9 @@ class ProductController {
         const { id } = req.params;
         const product = await Product.findOne({
             where: { id },
-            include: [{ model: ProductInfo, as: 'info' }]
+            include: [{ model: ProductInfo, as: 'info' },
+            { model: Brand, as: 'brand', attributes: ['name'] }
+            ]
         })
 
         const ratings = await Rating.findAll({ where: { productId: id } })

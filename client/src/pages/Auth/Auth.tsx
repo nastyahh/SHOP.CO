@@ -5,14 +5,14 @@ import { useLoginMutation, useSignUpMutation } from "../../redux/productsApi";
 import useForm from "../../hooks/useForm";
 import Img1 from "../../assets/Image1.png";
 import Img2 from "../../assets/Image2.png";
-import { useState } from "react";
+import { useContext } from "react";
 import { UserNotification } from "../../ui-components/UserNotification/UserNotification";
+import { NotificationContext } from "../../HOC/NotificationProvider";
 
 export const Auth = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
-  const [responseMessage, setResponseMessage] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
+  const { showNotification } = useContext(NotificationContext);
 
   const [login] = useLoginMutation();
   const [signUp] = useSignUpMutation();
@@ -23,16 +23,13 @@ export const Auth = () => {
 
   return (
     <>
-      <UserNotification isVisible={isVisible} message={responseMessage} />
+      <UserNotification />
       <div className={styles.auth}>
         <div className="container">
           <form
             onSubmit={async (e) => {
               const result = await handleForm(e, action);
-              console.log(result);
-              setResponseMessage(result.data.message);
-              setIsVisible(true);
-              setTimeout(() => setIsVisible(false), 2500);
+              showNotification(result.data.message);
             }}
             className={styles.auth_form}
           >

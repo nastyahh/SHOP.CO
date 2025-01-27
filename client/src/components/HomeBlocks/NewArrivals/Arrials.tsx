@@ -15,6 +15,8 @@ export const Arrivals = () => {
   const { data: brandsData, isLoading: isBrandsLoading } =
     useGetBrandsQuery("");
 
+  console.log(brandsData);
+
   const [visibleProducts, setVisibleProducts] = useState(4);
 
   if (isProductsLoading || isBrandsLoading) {
@@ -39,7 +41,13 @@ export const Arrivals = () => {
           <div>loading...</div>
         ) : (
           displayedProducts.map((product: Product) => {
-            return <ProductCard key={product.id} product={product} />;
+            return (
+              <ProductCard
+                key={product.id}
+                product={product}
+                className={styles.arrivals_card}
+              />
+            );
           })
         )}
       </div>

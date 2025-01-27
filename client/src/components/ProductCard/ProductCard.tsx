@@ -4,9 +4,15 @@ import { Product } from "../../types";
 import { PRODUCT_ROUTE } from "../../utils/consts";
 import { StarRating } from "../../ui-components/StarRating/StarRating";
 
-export const ProductCard = ({ product }: { product: Product }) => {
+export const ProductCard = ({
+  product,
+  className,
+}: {
+  product: Product;
+  className?: string;
+}) => {
   return (
-    <div className={styles.productCard}>
+    <div className={`${styles.productCard} ${className || ""}`}>
       <Link to={`${PRODUCT_ROUTE}/${product.id}`}>
         <img
           src={`http://localhost:5000/${product.img}`}

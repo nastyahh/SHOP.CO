@@ -6,6 +6,7 @@ import styles from "./Product.module.scss";
 import { StarRating } from "../../ui-components/StarRating/StarRating";
 import { useState } from "react";
 import { Counter } from "../../ui-components/Counter/Counter";
+import { findBrand } from "../../utils/findBrand";
 
 export const Product = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ export const Product = () => {
     return <div>Product not found</div>;
   }
 
-  const { name, img, rating, price } = data.product;
+  const { name, img, rating, price, brand } = data.product;
 
   const sizes = ["S", "M", "L", "XL"];
 
@@ -37,6 +38,7 @@ export const Product = () => {
             />
             <div className={styles.productDescr}>
               <h2 className={`title ${styles.product_name}`}>{name}</h2>
+              <p className={styles.product_brand}>{brand.name}</p>
               <StarRating rating={rating} starSize={24} />
               <p className={styles.product_price}>{price}$</p>
               <div className={styles.product_sizeWrap}>

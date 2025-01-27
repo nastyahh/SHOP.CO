@@ -11,12 +11,16 @@
   }
   &_name {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   &_price {
     margin: 12px 0 16px;
     font-size: 32px;
     font-weight: 700;
+  }
+  &_brand {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
   &_label {
     color: rgba(0, 0, 0, 0.6);
