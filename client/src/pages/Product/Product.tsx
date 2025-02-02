@@ -15,6 +15,7 @@ import { Reviews } from "../../ui-components/Reviews/Reviews";
 import { InfoItem } from "../../types";
 import { useAppSelector } from "../../hooks/typedHooks";
 import { NotificationContext } from "../../HOC/NotificationProvider";
+import { SizeSelector } from "../../ui-components/SizeSelector/SizeSelector";
 
 export const Product = () => {
   const { id } = useParams();
@@ -33,8 +34,6 @@ export const Product = () => {
   const aboutInfo = info.find((item: InfoItem) => item.title === "about");
   const details = info.find((item: InfoItem) => item.title === "details");
 
-  const sizes = ["S", "M", "L", "XL"];
-
   const tabs = [
     {
       title: "Product Details",
@@ -48,22 +47,18 @@ export const Product = () => {
   ];
 
   const handleCart = () => {
-    if (productCount === 0 || productSize === "") {
-      showNotification("You need to choose a size and specify the quantity");
-    } else if (!isAuth) {
-      showNotification("You need to login");
-    } else {
-      addToCart({
-        userId: user.id,
-        productId: id,
-        quantity: productCount,
-        size: productSize,
-      });
-      showNotification("Product added to your cart");
-    }
-  };
+    if (!isAuth) return showNotification("You need to login");
+    if (!productSize) return showNotification("You need to choose a size");
+    if (productCount === 0) return showNotification("Specify the quantity");
 
-  console.log(data);
+    addToCart({
+      userId: user.id,
+      productId: id,
+      quantity: productCount,
+      size: productSize,
+    });
+    showNotification("Product added to your cart");
+  };
 
   return (
     <div className={styles.product}>
@@ -87,19 +82,11 @@ export const Product = () => {
               <p className={styles.product_price}>{price}$</p>
               <div className={styles.product_sizeWrap}>
                 <h3 className={styles.product_label}>Choose Size</h3>
-                <div className={styles.product_sizes}>
-                  {sizes.map((size, index) => (
-                    <button
-                      key={`size-${index}`}
-                      className={`${styles.product_size} ${
-                        productSize === size ? styles.active : ""
-                      }`}
-                      onClick={() => setProductSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
+                <SizeSelector
+                  sizes={["S", "M", "L", "XL"]}
+                  onSizeSelect={setProductSize}
+                  selectedSize={productSize}
+                />
               </div>
               <div className={styles.product_actions}>
                 <Counter count={productCount} onChange={setProductCount} />
