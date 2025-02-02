@@ -1,0 +1,62 @@
+@import "../../colors.scss";
+
+.reviews {
+  padding-bottom: 50px;
+  &_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &_title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+  &_count {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  &_item {
+    width: 100%;
+    padding: 28px 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  &_wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+.review {
+  &_name {
+    margin: 20px 0 16px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+  &_date {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+.sort_btn {
+  width: 130px;
+  padding: 16px 20px;
+  border-radius: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: $light-gray;
+  font-size: 18px;
+  font-weight: 500;
+  &__arrow.latest {
+    transform: rotate(180deg);
+  }
+}

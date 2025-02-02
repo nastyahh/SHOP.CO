@@ -1,0 +1,20 @@
+.details {
+  padding-bottom: 50px;
+  &_title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 32px 0;
+  }
+  &_list li {
+    list-style-type: disc;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 22px;
+    line-height: 26px;
+    &:not(:last-of-type) {
+      margin-bottom: 5px;
+    }
+  }
+  &_list {
+    padding-left: 15px;
+  }
+}

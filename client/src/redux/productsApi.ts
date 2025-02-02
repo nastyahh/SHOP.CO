@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { jwtDecode } from "jwt-decode";
-import { LoginData, LoginResponse } from "../types";
+import { AuthData, AuthResponse } from "../types";
 
 export const productsApi = createApi({
   reducerPath: "productsApi",
@@ -14,6 +14,7 @@ export const productsApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["Cart", "User"],
   endpoints: (build) => ({
     getProducts: build.query({
       query: () => "product",
@@ -24,30 +25,51 @@ export const productsApi = createApi({
     getBrands: build.query({
       query: () => "brand",
     }),
-    login: build.mutation<LoginResponse, LoginData>({
+    login: build.mutation<AuthResponse, AuthData>({
       query: (formData) => ({
         url: "user/login",
         method: "POST",
         body: formData,
       }),
-      transformResponse: (response: LoginResponse) => {
+      transformResponse: (response: AuthResponse) => {
         const decodedToken = jwtDecode(response.token);
         return { ...response, user: decodedToken };
       },
     }),
-    signUp: build.mutation({
+    signUp: build.mutation<AuthResponse, AuthData>({
       query: (formData) => ({
         url: "user/registration",
         method: "POST",
         body: formData,
       }),
-      transformResponse: (response) => {
+      transformResponse: (response: AuthResponse) => {
         const decodedToken = jwtDecode(response.token);
         return { ...response, user: decodedToken };
       },
     }),
     checkAuth: build.query({
       query: () => "user/auth",
+    }),
+    getCart: build.query({
+      query: (userId) => `cart/${userId}`,
+      providesTags: ["Cart"],
+    }),
+
+    addToCart: build.mutation({
+      query: (productData) => ({
+        url: "cart",
+        method: "POST",
+        body: productData,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    deleteCartItem: build.mutation({
+      query: (cartItemData) => ({
+        url: "cart/delete",
+        method: "DELETE",
+        body: cartItemData,
+      }),
+      invalidatesTags: ["Cart"],
     }),
   }),
 });
@@ -59,4 +81,7 @@ export const {
   useLoginMutation,
   useSignUpMutation,
   useCheckAuthQuery,
+  useGetCartQuery,
+  useAddToCartMutation,
+  useDeleteCartItemMutation,
 } = productsApi;

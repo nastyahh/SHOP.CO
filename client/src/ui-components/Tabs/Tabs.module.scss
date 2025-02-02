@@ -1,0 +1,18 @@
+.tabs {
+  &_item {
+    padding: 24px 140px;
+
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #00000099;
+  }
+  &_item.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+  &_header {
+    margin-bottom: 32px;
+    border-bottom: 1px solid #0000001a;
+  }
+}

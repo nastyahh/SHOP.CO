@@ -6,7 +6,6 @@ import useForm from "../../hooks/useForm";
 import Img1 from "../../assets/Image1.png";
 import Img2 from "../../assets/Image2.png";
 import { useContext } from "react";
-import { UserNotification } from "../../ui-components/UserNotification/UserNotification";
 import { NotificationContext } from "../../HOC/NotificationProvider";
 
 export const Auth = () => {
@@ -23,7 +22,6 @@ export const Auth = () => {
 
   return (
     <>
-      <UserNotification />
       <div className={styles.auth}>
         <div className="container">
           <form

@@ -16,6 +16,7 @@ const Cart = sequelize.define('cart', {
 const CartProduct = sequelize.define('cart_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     quantity: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+    size: { type: DataTypes.STRING }
 })
 
 const Product = sequelize.define('product', {

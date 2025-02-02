@@ -35,14 +35,15 @@ export type Brand = {
 
 export type CounterProps = {
   count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  onChange: (value: number) => void;
 };
 
-export type LoginResponse = {
+export type AuthResponse = {
   token: string;
 };
 
-export type LoginData = {
+export type AuthData = {
+  username: string;
   email: string;
   password: string;
 };
@@ -51,3 +52,21 @@ export interface INotificationContext {
   notification: string;
   showNotification: (message: string) => void;
 }
+
+export type InfoItem = {
+  id: number;
+  title: string;
+  description: string;
+};
+
+export type CartItemType = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  img: string;
+  size: string;
+  cartId: number;
+  productId: number;
+  product: Product;
+};

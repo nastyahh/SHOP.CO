@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const path = require('path')
-const { Product, ProductInfo, Rating, Brand } = require('../models/models')
+const { Product, ProductInfo, Rating, Brand, User } = require('../models/models')
 const ApiError = require('../error/ApiError');
 const { DESCRIBE } = require('sequelize/lib/query-types');
 
@@ -15,14 +15,14 @@ class ProductController {
             const product = await Product.create({ name, price, brandId, categoryId, img: fileName, gender })
 
             if (info) {
-                info = JSON.parse(info)
-                info.forEach(i =>
+                const parsedInfo = JSON.parse(info);
+                parsedInfo.forEach(i =>
                     ProductInfo.create({
                         title: i.title,
                         description: i.description,
                         productId: product.id
                     })
-                )
+                );
             }
 
             return res.json(product)
@@ -63,7 +63,14 @@ class ProductController {
             ]
         })
 
-        const ratings = await Rating.findAll({ where: { productId: id } })
+
+        const ratings = await Rating.findAll({
+            where: { productId: id },
+            include: {
+                model: User,
+                attributes: ['username']
+            }
+        })
 
         return res.json({ product, ratings })
     }

@@ -3,6 +3,7 @@
   &Wrap {
     display: flex;
     gap: 40px;
+    margin-bottom: 50px;
   }
   &_img {
     width: 530px;
@@ -13,8 +14,11 @@
     text-align: left;
     margin-bottom: 10px;
   }
+  &_about {
+    margin-top: 10px;
+  }
   &_price {
-    margin: 12px 0 16px;
+    margin: 20px 0 15px;
     font-size: 32px;
     font-weight: 700;
   }
@@ -55,6 +59,9 @@
     width: calc(100% - 190px);
     &:hover {
       color: #000;
+    }
+    &:disabled {
+      background: #c4c4c4;
     }
   }
 }

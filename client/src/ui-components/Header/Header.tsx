@@ -47,7 +47,7 @@ export const Header = () => {
           <Link to="/cart">
             <Cart />
           </Link>
-          <Link to={isAuth ? "/profile" : "/login"}>
+          <Link to="/profile">
             {isAuth ? (
               <div className={styles.header_user}>
                 <Profile /> <span>{user.username}</span>{" "}

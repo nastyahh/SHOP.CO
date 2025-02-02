@@ -33,6 +33,7 @@ const useForm = () => {
       localStorage.setItem("token", result.token);
       dispatch(
         setAuth({
+          id: result.user.id,
           username: result.user.username,
           email: result.user.email,
           role: result.user.role,

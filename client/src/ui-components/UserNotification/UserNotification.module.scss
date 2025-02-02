@@ -4,36 +4,32 @@
   padding: 15px 40px;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -100px);
   // transition: transform 0.4s ease-out;
   font-size: 20px;
   background: #fff;
   border: 1px solid $gray;
   border-radius: 20px;
-  animation: fadeIn 0.3s ease-out, fadeOut 0.3s ease-out 2.2s;
+  animation: fadeInOut 2.5s ease-in-out;
   &_text {
     font-weight: 600;
   }
 }
-
-@keyframes fadeIn {
-  from {
+@keyframes fadeInOut {
+  0% {
     opacity: 0;
-    transform: translate(-50%, -200px);
+    transform: translate(-50%, -100%);
   }
-  to {
+  20% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 110%);
   }
-}
-
-@keyframes fadeOut {
-  from {
+  80% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 110%);
   }
-  to {
+  100% {
     opacity: 0;
-    transform: translate(-50%, -10px);
+    transform: translate(-50%, -100%);
   }
 }

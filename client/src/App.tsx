@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useCheckAuthQuery } from "./redux/productsApi";
 import { logout, setAuth } from "./redux/userSlice";
 import { jwtDecode } from "jwt-decode";
+import { UserNotification } from "./ui-components/UserNotification/UserNotification";
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -17,8 +18,8 @@ export const App = () => {
       const decoded = jwtDecode(data.token);
       console.log(decoded);
       console.log("localstorage:", localStorage.getItem("token"));
-      const { username, email, role } = decoded;
-      dispatch(setAuth({ username, email, role }));
+      const { id, username, email, role } = decoded;
+      dispatch(setAuth({ id, username, email, role }));
     } else if (error) {
       logout();
     }
@@ -28,6 +29,7 @@ export const App = () => {
 
   return (
     <>
+      <UserNotification />
       <AppRouter />
     </>
   );

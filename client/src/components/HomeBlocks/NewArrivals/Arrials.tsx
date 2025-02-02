@@ -15,8 +15,6 @@ export const Arrivals = () => {
   const { data: brandsData, isLoading: isBrandsLoading } =
     useGetBrandsQuery("");
 
-  console.log(brandsData);
-
   const [visibleProducts, setVisibleProducts] = useState(4);
 
   if (isProductsLoading || isBrandsLoading) {

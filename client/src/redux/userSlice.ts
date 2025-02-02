@@ -5,6 +5,7 @@ export const userSlice = createSlice({
   initialState: {
     isAuth: false,
     userData: {
+      id: "",
       username: "",
       email: "",
       role: "",
@@ -17,6 +18,7 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.userData = {
+        id: "",
         username: "",
         email: "",
         role: "",

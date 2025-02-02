@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import { AuthRoutes, PublicRoutes } from "../routes";
 import Layout from "../Layout";
 import { useSelector } from "react-redux";
@@ -9,10 +9,13 @@ export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {isAuth &&
-          AuthRoutes.map(({ path, Component }) => (
+        {AuthRoutes.map(({ path, Component }) =>
+          isAuth ? (
             <Route key={path} path={path} element={<Component />} />
-          ))}
+          ) : (
+            <Route path={path} element={<Navigate to="/login" />} />
+          )
+        )}
 
         {PublicRoutes.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />
