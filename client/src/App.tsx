@@ -13,12 +13,10 @@ export const App = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       localStorage.setItem("token", data.token);
       const decoded = jwtDecode(data.token);
-      console.log(decoded);
-      console.log("localstorage:", localStorage.getItem("token"));
       const { id, username, email, role } = decoded;
+
       dispatch(setAuth({ id, username, email, role }));
     } else if (error) {
       logout();

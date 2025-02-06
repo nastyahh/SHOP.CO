@@ -13,7 +13,10 @@ export const ProductCard = ({
 }) => {
   return (
     <div className={`${styles.productCard} ${className || ""}`}>
-      <Link to={`${PRODUCT_ROUTE}/${product.id}`}>
+      <Link
+        to={`${PRODUCT_ROUTE}/${product.id}`}
+        className={styles.productCard_wrap}
+      >
         <img
           src={`http://localhost:5000/${product.img}`}
           alt=""

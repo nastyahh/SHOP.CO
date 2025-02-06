@@ -1,0 +1,27 @@
+.reviewForm {
+  width: 600px;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  &_title {
+    text-align: center;
+    font-size: 24px;
+  }
+  & textarea {
+    max-width: 600px;
+    margin-bottom: 15px;
+    padding: 15px 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    border-radius: 10px;
+    font-size: 18px;
+    &:disabled {
+      background: #eae7e7;
+    }
+  }
+  &_send {
+    width: 200px;
+    align-self: center;
+  }
+}

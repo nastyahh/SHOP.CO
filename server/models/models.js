@@ -42,6 +42,7 @@ const Rating = sequelize.define('rating', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     rate: { type: DataTypes.INTEGER, allowNull: false },
     productId: { type: DataTypes.INTEGER, allowNull: false },
+    description: { type: DataTypes.STRING }
 })
 
 const ProductInfo = sequelize.define('product_info', {

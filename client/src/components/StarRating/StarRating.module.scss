@@ -1,0 +1,10 @@
+.rating {
+  display: flex;
+  align-items: center;
+  &_item {
+    cursor: pointer;
+  }
+}
+.fill path {
+  fill: #ffc633;
+}

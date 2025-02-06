@@ -2,8 +2,11 @@ import { useState } from "react";
 import { StarRating } from "../StarRating/StarRating";
 import styles from "./Reviews.module.scss";
 import { ReactComponent as Arrow } from "../../assets/dropdown-arrow.svg";
+import { ReviewForm } from "../../components/ReviewForm/ReviewForm";
+import { useAppSelector } from "../../hooks/typedHooks";
 
-export const Reviews = ({ reviews }) => {
+export const Reviews = ({ reviews, productId }) => {
+  const isAuth = useAppSelector((state) => state.user.isAuth);
   const [orderSort, setOrderSort] = useState("Newest");
 
   const sortedReviews = [...reviews].sort((a, b) => {
@@ -17,7 +20,7 @@ export const Reviews = ({ reviews }) => {
   const toggleSort = () => {
     setOrderSort(orderSort === "Newest" ? "Latest" : "Newest");
   };
-  console.log(reviews);
+  // console.log(reviews);
   return (
     <div className={styles.reviews}>
       <div className={styles.reviews_header}>
@@ -41,11 +44,13 @@ export const Reviews = ({ reviews }) => {
             <div className={styles.reviews_item} key={index}>
               <StarRating rating={review.rate} starSize={22} />
               <p className={styles.review_name}>{review.user.username}</p>
+              <p className={styles.review_descr}>{review.description}</p>
               <p className={styles.review_date}>Posted on {date}</p>
             </div>
           );
         })}
       </div>
+      {isAuth && <ReviewForm productId={productId} />}
     </div>
   );
 };

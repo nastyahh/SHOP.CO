@@ -27,9 +27,9 @@ export const Product = () => {
   const { showNotification } = useContext(NotificationContext);
   const isAuth = useAppSelector((state) => state.user.isAuth);
 
-  if (!data) return <div>Product not found</div>;
+  if (!data) return <div className="loader"></div>;
 
-  const { name, img, rating, price, brand, info } = data.product;
+  const { id: productId, name, img, rating, price, brand, info } = data.product;
 
   const aboutInfo = info.find((item: InfoItem) => item.title === "about");
   const details = info.find((item: InfoItem) => item.title === "details");
@@ -43,7 +43,10 @@ export const Product = () => {
         <div>No details available</div>
       ),
     },
-    { title: "Rating", content: <Reviews reviews={data.ratings} /> },
+    {
+      title: "Rating",
+      content: <Reviews reviews={data.ratings} productId={productId} />,
+    },
   ];
 
   const handleCart = () => {
@@ -63,7 +66,7 @@ export const Product = () => {
   return (
     <div className={styles.product}>
       {isLoading ? (
-        <div>loading...</div>
+        <div className="loader"></div>
       ) : (
         <div className="container">
           <div className={styles.productWrap}>

@@ -5,9 +5,10 @@ import {
 import "../../../App.css";
 import styles from "./Arrivals.module.scss";
 import { ProductCard } from "../../ProductCard/ProductCard";
-import { Brand, Product } from "../../../types";
+import { Product } from "../../../types";
 import { useState } from "react";
 import { findBrand } from "../../../utils/findBrand";
+import "../../../sharedStyles.scss";
 
 export const Arrivals = () => {
   const { data: productsData, isLoading: isProductsLoading } =
@@ -36,7 +37,7 @@ export const Arrivals = () => {
       <h2 className="title">NEW ARRIVALS</h2>
       <div className={styles.productsWrap}>
         {isProductsLoading || isBrandsLoading ? (
-          <div>loading...</div>
+          <div className="loader"></div>
         ) : (
           displayedProducts.map((product: Product) => {
             return (
@@ -48,15 +49,15 @@ export const Arrivals = () => {
             );
           })
         )}
+        {visibleProducts < products.length && (
+          <button
+            className="action-btn"
+            onClick={() => setVisibleProducts((prev) => prev + 4)}
+          >
+            Load more
+          </button>
+        )}
       </div>
-      {visibleProducts < products.length && (
-        <button
-          className="action-btn"
-          onClick={() => setVisibleProducts((prev) => prev + 4)}
-        >
-          Load more
-        </button>
-      )}
     </div>
   );
 };

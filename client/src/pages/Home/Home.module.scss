@@ -25,6 +25,9 @@
     display: inline-block;
     width: 210px;
     margin-bottom: 50px;
+    &:hover {
+      color: #fff;
+    }
   }
   &_numbers {
     display: flex;

@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
 }
 .arrivals_card {
-  width: 23%;
+  width: 100%;
+  max-width: 308px;
 }

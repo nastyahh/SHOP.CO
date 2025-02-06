@@ -14,13 +14,14 @@ export const productsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Cart", "User"],
+  tagTypes: ["Cart", "User", "Rating", "Product"],
   endpoints: (build) => ({
     getProducts: build.query({
       query: () => "product",
     }),
     getOneProduct: build.query({
       query: (id) => `product/${id}`,
+      providesTags: ["Product"],
     }),
     getBrands: build.query({
       query: () => "brand",
@@ -54,7 +55,6 @@ export const productsApi = createApi({
       query: (userId) => `cart/${userId}`,
       providesTags: ["Cart"],
     }),
-
     addToCart: build.mutation({
       query: (productData) => ({
         url: "cart",
@@ -71,6 +71,18 @@ export const productsApi = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+    addRating: build.mutation({
+      query: (ratingData) => ({
+        url: "rating",
+        method: "POST",
+        body: ratingData,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+    getUserRating: build.query({
+      query: ({ userId, productId }) =>
+        `rating/get-user-rating?userId=${userId}&productId=${productId}`,
+    }),
   }),
 });
 
@@ -84,4 +96,6 @@ export const {
   useGetCartQuery,
   useAddToCartMutation,
   useDeleteCartItemMutation,
+  useAddRatingMutation,
+  useGetUserRatingQuery,
 } = productsApi;
