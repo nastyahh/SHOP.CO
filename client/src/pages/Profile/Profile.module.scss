@@ -1,0 +1,18 @@
+.profile {
+  padding: 20px 0 50px;
+  &_info__label {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &_info__item {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  &_logout {
+    width: 120px;
+    &:hover {
+      color: #a70303;
+    }
+  }
+}

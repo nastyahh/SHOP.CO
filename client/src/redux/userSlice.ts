@@ -23,6 +23,7 @@ export const userSlice = createSlice({
         email: "",
         role: "",
       };
+      state.isAuth = false;
       localStorage.removeItem("token");
     },
   },
