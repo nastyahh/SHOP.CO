@@ -57,6 +57,9 @@
     gap: 100px;
     animation: run 14s linear infinite;
   }
+  &_item {
+    height: 33px;
+  }
 }
 
 @keyframes run {

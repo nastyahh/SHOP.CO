@@ -9,10 +9,11 @@ import { Product } from "../../../types";
 import { useState } from "react";
 import { findBrand } from "../../../utils/findBrand";
 import "../../../sharedStyles.scss";
+import Masonry from "react-masonry-css";
 
 export const Arrivals = () => {
   const { data: productsData, isLoading: isProductsLoading } =
-    useGetProductsQuery("");
+    useGetProductsQuery({ limit: 12 });
   const { data: brandsData, isLoading: isBrandsLoading } =
     useGetBrandsQuery("");
 
@@ -22,7 +23,7 @@ export const Arrivals = () => {
     return null;
   }
 
-  const products = productsData.rows.slice(-12).map((product: Product) => {
+  const products = productsData.rows.map((product: Product) => {
     const brand = findBrand(brandsData, product.brandId);
     return {
       ...product,
@@ -32,10 +33,21 @@ export const Arrivals = () => {
 
   const displayedProducts = products.slice(0, visibleProducts);
 
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1,
+  };
+
   return (
     <div className="container">
       <h2 className="title">NEW ARRIVALS</h2>
-      <div className={styles.productsWrap}>
+      <Masonry
+        className={styles.productsWrap}
+        breakpointCols={breakpointColumnsObj}
+        columnClassName={styles.masonryColumn}
+      >
         {isProductsLoading || isBrandsLoading ? (
           <div className="loader"></div>
         ) : (
@@ -49,15 +61,15 @@ export const Arrivals = () => {
             );
           })
         )}
-        {visibleProducts < products.length && (
-          <button
-            className="action-btn"
-            onClick={() => setVisibleProducts((prev) => prev + 4)}
-          >
-            Load more
-          </button>
-        )}
-      </div>
+      </Masonry>
+      {visibleProducts < products.length && (
+        <button
+          className="action-btn"
+          onClick={() => setVisibleProducts((prev) => prev + 4)}
+        >
+          Load more
+        </button>
+      )}
     </div>
   );
 };

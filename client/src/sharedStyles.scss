@@ -47,7 +47,10 @@
 }
 
 .loader {
-  margin: 0 auto;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
   width: fit-content;
   font-weight: bold;
   font-family: monospace;

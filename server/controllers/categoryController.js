@@ -5,7 +5,10 @@ class CategoryController {
     async create(req, res) {
         const { name } = req.body;
         const category = await Category.create({ name })
-        return res.json(category)
+        return res.json({
+            category,
+            message: "Category created"
+        })
     }
 
     async getAll(req, res) {

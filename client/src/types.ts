@@ -28,10 +28,23 @@ export type Product = {
   brand: string;
 };
 
-export type Brand = {
+export type ProductData = {
+  name: string;
+  price: string;
+  img: File | null;
+  gender: string;
+  categoryId: string;
+  brandId: string;
+  info: { title: string; description: string }[];
+};
+
+type IdentifiableOption = {
   id: number;
   name: string;
 };
+
+export type Brand = IdentifiableOption;
+export type Category = IdentifiableOption;
 
 export type CounterProps = {
   count: number;
@@ -48,10 +61,15 @@ export type AuthData = {
   password: string;
 };
 
-export interface INotificationContext {
+export type INotificationContext = {
   notification: string;
   showNotification: (message: string) => void;
-}
+};
+
+export type modalContextProps = {
+  isModalActive: boolean;
+  setModalActive: (active: boolean) => void;
+};
 
 export type InfoItem = {
   id: number;

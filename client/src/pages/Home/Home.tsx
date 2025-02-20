@@ -1,11 +1,13 @@
 import styles from "./Home.module.scss";
 import "../../sharedStyles.scss";
 import { Link } from "react-router";
-import { ReactComponent as Zara } from "../../assets/zara.svg";
 import { ReactComponent as CK } from "../../assets/calvin.svg";
-import { ReactComponent as Celine } from "../../assets/celine.svg";
 import { ReactComponent as Prada } from "../../assets/prada.svg";
 import { ReactComponent as Versace } from "../../assets/versace.svg";
+import { ReactComponent as MiuMiu } from "../../assets/miu-miu.svg";
+import { ReactComponent as Burberry } from "../../assets/burberry.svg";
+import { ReactComponent as Jacquemus } from "../../assets/jacquemus.svg";
+import { ReactComponent as SaintL } from "../../assets/saint-lauren.svg";
 import { Arrivals } from "../../components/HomeBlocks/NewArrivals/Arrials";
 import { useEffect } from "react";
 import { useAppSelector } from "../../hooks/typedHooks";
@@ -55,11 +57,13 @@ export const Home = () => {
         </div>
         <div className={styles.runningLine}>
           <div className={styles.runningLine_wrap}>
-            <Zara className={styles.runningLine_item} />
             <CK className={styles.runningLine_item} />
-            <Celine className={styles.runningLine_item} />
             <Prada className={styles.runningLine_item} />
             <Versace className={styles.runningLine_item} />
+            <MiuMiu className={styles.runningLine_item} />
+            <Burberry className={styles.runningLine_item} />
+            <Jacquemus className={styles.runningLine_item} />
+            <SaintL className={styles.runningLine_item} />
           </div>
         </div>
       </div>

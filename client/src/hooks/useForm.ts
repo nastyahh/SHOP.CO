@@ -15,10 +15,10 @@ const useForm = () => {
   });
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: type === "checkbox" ? (checked ? "ADMIN" : "USER") : value,
     });
   };
 

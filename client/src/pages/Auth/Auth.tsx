@@ -48,6 +48,7 @@ export const Auth = () => {
                 name="username"
                 value={formState.username}
                 onChange={handleInput}
+                className={styles.auth_input}
               />
             ) : null}
             <input
@@ -56,6 +57,7 @@ export const Auth = () => {
               name="email"
               value={formState.email}
               onChange={handleInput}
+              className={styles.auth_input}
             />
             <input
               type="password"
@@ -63,7 +65,21 @@ export const Auth = () => {
               name="password"
               value={formState.password}
               onChange={handleInput}
-            />
+              className={styles.auth_input}
+            />{" "}
+            {!isLoginPage && (
+              <div className={`${styles.auth_wrap} ${styles.roleWrap}`}>
+                <input
+                  type="checkbox"
+                  name="role"
+                  id="user-role"
+                  className={styles.customCheckbox}
+                  checked={formState.role === "ADMIN"}
+                  onChange={handleInput}
+                />
+                <label htmlFor="user-role">ADMIN</label>
+              </div>
+            )}
             <button type="submit" className={`${styles.auth_btn} primary-btn`}>
               {isLoginPage ? "Login" : "Sign Up"}
             </button>

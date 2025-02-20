@@ -14,10 +14,20 @@ export const productsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Cart", "User", "Rating", "Product"],
+  tagTypes: ["Cart", "User", "Rating", "Product", "Category"],
   endpoints: (build) => ({
+    createProduct: build.mutation({
+      query: (formData) => ({
+        url: "product",
+        method: "POST",
+        body: formData,
+      }),
+    }),
     getProducts: build.query({
-      query: () => "product",
+      query: (params) => ({
+        url: "product",
+        params,
+      }),
     }),
     getOneProduct: build.query({
       query: (id) => `product/${id}`,
@@ -25,6 +35,24 @@ export const productsApi = createApi({
     }),
     getBrands: build.query({
       query: () => "brand",
+    }),
+    createBrand: build.mutation({
+      query: (brandData) => ({
+        url: "brand",
+        method: "POST",
+        body: brandData,
+      }),
+    }),
+    createCategory: build.mutation({
+      query: (categoryData) => ({
+        url: "category",
+        method: "POST",
+        body: categoryData,
+      }),
+    }),
+    getCategories: build.query({
+      query: () => "category",
+      providesTags: ["Category"],
     }),
     login: build.mutation<AuthResponse, AuthData>({
       query: (formData) => ({
@@ -50,6 +78,7 @@ export const productsApi = createApi({
     }),
     checkAuth: build.query({
       query: () => "user/auth",
+      keepUnusedDataFor: 5,
     }),
     getCart: build.query({
       query: (userId) => `cart/${userId}`,
@@ -87,8 +116,10 @@ export const productsApi = createApi({
 });
 
 export const {
+  useCreateProductMutation,
   useGetProductsQuery,
   useGetBrandsQuery,
+  useGetCategoriesQuery,
   useGetOneProductQuery,
   useLoginMutation,
   useSignUpMutation,
@@ -98,4 +129,6 @@ export const {
   useDeleteCartItemMutation,
   useAddRatingMutation,
   useGetUserRatingQuery,
+  useCreateCategoryMutation,
+  useCreateBrandMutation,
 } = productsApi;

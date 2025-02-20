@@ -9,13 +9,9 @@ export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {AuthRoutes.map(({ path, Component }) =>
-          isAuth ? (
-            <Route key={path} path={path} element={<Component />} />
-          ) : (
-            <Route path={path} element={<Navigate to="/login" />} />
-          )
-        )}
+        {AuthRoutes.map(({ path, Component }) => (
+          <Route key={path} path={path} element={<Component />} />
+        ))}
 
         {PublicRoutes.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />

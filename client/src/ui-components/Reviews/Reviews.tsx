@@ -20,7 +20,7 @@ export const Reviews = ({ reviews, productId }) => {
   const toggleSort = () => {
     setOrderSort(orderSort === "Newest" ? "Latest" : "Newest");
   };
-  // console.log(reviews);
+  console.log(reviews);
   return (
     <div className={styles.reviews}>
       <div className={styles.reviews_header}>

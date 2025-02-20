@@ -9,8 +9,14 @@
     font-weight: 600;
     margin-bottom: 20px;
   }
-  &_logout {
-    width: 120px;
+  &_actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  &_btn {
+    width: auto;
+    padding: 16px 20px;
     &:hover {
       color: #a70303;
     }

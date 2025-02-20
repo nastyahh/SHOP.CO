@@ -9,6 +9,7 @@ class ProductController {
         try {
             const { name, price, brandId, categoryId, info, gender } = req.body;
             const { img } = req.files;
+
             let fileName = uuid.v4() + ".jpg"; //генерируем айди для картинки
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
 
@@ -25,9 +26,10 @@ class ProductController {
                 );
             }
 
-            return res.json(product)
+            return res.json({ product, message: "Product successfully created" })
         }
         catch (e) {
+            console.log(e)
             next(ApiError.badRequest(e.message))
         }
     }
