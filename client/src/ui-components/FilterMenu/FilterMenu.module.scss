@@ -1,0 +1,59 @@
+.filterMenu {
+  width: 280px;
+  padding: 20px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  &_option {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    justify-content: space-between;
+  }
+  &_list {
+    position: relative;
+    height: 150px;
+    padding-right: 5px;
+    overflow-y: scroll;
+
+    & li {
+      color: rgba(0, 0, 0, 0.6);
+    }
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #bebebe;
+      border-radius: 5px;
+    }
+  }
+  &_priceWrap {
+    margin: 15px 0 20px;
+  }
+  &_priceWrap__values {
+    margin: 5px 0 10px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    & span {
+      font-size: 16px;
+      color: #000;
+      font-weight: 700;
+    }
+  }
+  & input {
+    border: 1px solid #000;
+  }
+  & label {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  &.gender {
+    gap: 30px;
+  }
+}

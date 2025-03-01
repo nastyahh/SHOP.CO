@@ -20,13 +20,12 @@ export const handleSubmit = async (
   resetState: () => void
 ) => {
   e.preventDefault();
-  try {
-    const result = await request(reqData);
+  const result = await request(reqData);
+  console.log(result);
+  if (result?.data?.message) {
     showNotification(result.data.message);
     resetState();
+  } else showNotification(result.error.data.message);
 
-    return result;
-  } catch (error) {
-    console.log("Ошибка при отправке данных:", error);
-  }
+  return result;
 };

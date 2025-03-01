@@ -14,11 +14,11 @@ export const Header = () => {
 
   const dropdownOptions = [
     {
-      link: "/men",
+      link: "/catalog?gender=male",
       label: "For Men",
     },
     {
-      link: "/women",
+      link: "/catalog?gender=female",
       label: "For Women",
     },
   ];

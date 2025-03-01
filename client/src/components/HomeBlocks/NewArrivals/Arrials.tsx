@@ -13,7 +13,7 @@ import Masonry from "react-masonry-css";
 
 export const Arrivals = () => {
   const { data: productsData, isLoading: isProductsLoading } =
-    useGetProductsQuery({ limit: 12 });
+    useGetProductsQuery({ limit: 8 });
   const { data: brandsData, isLoading: isBrandsLoading } =
     useGetBrandsQuery("");
 
@@ -23,7 +23,7 @@ export const Arrivals = () => {
     return null;
   }
 
-  const products = productsData.rows.map((product: Product) => {
+  const products = productsData?.products.rows.map((product: Product) => {
     const brand = findBrand(brandsData, product.brandId);
     return {
       ...product,
@@ -31,7 +31,7 @@ export const Arrivals = () => {
     };
   });
 
-  const displayedProducts = products.slice(0, visibleProducts);
+  const displayedProducts = products?.slice(0, visibleProducts);
 
   const breakpointColumnsObj = {
     default: 4,
@@ -44,7 +44,7 @@ export const Arrivals = () => {
     <div className="container">
       <h2 className="title">NEW ARRIVALS</h2>
       <Masonry
-        className={styles.productsWrap}
+        className="productsGrid"
         breakpointCols={breakpointColumnsObj}
         columnClassName={styles.masonryColumn}
       >
@@ -56,7 +56,7 @@ export const Arrivals = () => {
               <ProductCard
                 key={product.id}
                 product={product}
-                className={styles.arrivals_card}
+                className="productsGrid_item"
               />
             );
           })

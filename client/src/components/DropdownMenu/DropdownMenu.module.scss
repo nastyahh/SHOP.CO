@@ -4,7 +4,8 @@
   &Wrap {
     position: relative;
     &:hover .dropdown_menu {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
     }
     &:hover .dropdown_arrow {
       transform: rotate(180deg);
@@ -17,10 +18,12 @@
     color: #000;
   }
   &_menu {
-    display: none;
+    // display: none;
+    opacity: 0;
+    visibility: hidden;
     flex-direction: column;
     position: absolute;
-    bottom: -45px;
+    bottom: -20px;
     width: 200px;
     background: $beige;
     &__item {

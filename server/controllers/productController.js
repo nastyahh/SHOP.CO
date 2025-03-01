@@ -1,6 +1,7 @@
 const uuid = require('uuid')
 const path = require('path')
-const { Product, ProductInfo, Rating, Brand, User } = require('../models/models')
+const { Op } = require('sequelize')
+const { Product, ProductInfo, Rating, Brand, User, Category } = require('../models/models')
 const ApiError = require('../error/ApiError');
 const { DESCRIBE } = require('sequelize/lib/query-types');
 
@@ -35,25 +36,35 @@ class ProductController {
     }
 
     async getAll(req, res) {
-        let { brandId, categoryId, limit, page } = req.query
-        page = page || 1;
+        let { brandId, categoryId, minPrice, maxPrice, gender, limit, page } = req.query
+
+        page = Number(page) || 1;
         limit = limit || 9;
         let offset = page * limit - limit;
-        let products;
-        if (!brandId && !categoryId) {
-            products = await Product.findAndCountAll({ limit, offset })
-        }
-        if (brandId && !categoryId) {
-            products = await Product.findAndCountAll({ where: { brandId }, limit, offset })
-        }
-        if (!brandId && categoryId) {
-            products = await Product.findAndCountAll({ where: { categoryId }, limit, offset })
-        }
-        if (brandId && categoryId) {
-            products = await Product.findAndCountAll({ where: { categoryId, brandId }, limit, offset })
-        }
 
-        return res.json(products);
+        let where = {}
+
+        if (brandId) {
+            where.brandId = { [Op.in]: brandId.split(',') }
+        }
+        if (categoryId) {
+            where.categoryId = { [Op.in]: categoryId.split(',') }
+        }
+        if (minPrice) where.price = { ...where.price, [Op.gte]: minPrice }
+        if (minPrice) where.price = { ...where.price, [Op.lte]: maxPrice }
+        if (gender) {
+            console.log('gender', gender)
+            where.gender = gender
+        };
+
+        const products = await Product.findAndCountAll({
+            where,
+            limit,
+            offset,
+        })
+        const totalPages = Math.ceil(products.count / limit)
+
+        return res.json({ products: products, totalCountPages: totalPages });
     }
 
     async getOne(req, res) {

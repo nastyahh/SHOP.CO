@@ -1,12 +1,14 @@
 import { Admin } from "./pages/Admin/Admin";
 import { Auth } from "./pages/Auth/Auth";
 import { Cart } from "./pages/Cart/Cart";
+import { Catalog } from "./pages/Catalog/Catalog";
 import { Home } from "./pages/Home/Home";
 import { Product } from "./pages/Product/Product";
 import { Profile } from "./pages/Profile/Profile";
 import {
   ADMIN_ROUTE,
   CART_ROUTE,
+  CATALOG_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
   PRODUCT_ROUTE,
@@ -33,6 +35,10 @@ export const PublicRoutes = [
   {
     path: HOME_ROUTE,
     Component: Home,
+  },
+  {
+    path: CATALOG_ROUTE,
+    Component: Catalog,
   },
   {
     path: PRODUCT_ROUTE + "/:id",

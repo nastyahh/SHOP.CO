@@ -1,0 +1,29 @@
+.runningLine {
+  width: 100%;
+  background: #000;
+  overflow: hidden;
+  &_wrap {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    animation: run 15s linear infinite;
+  }
+  &_item svg {
+    height: 33px;
+    cursor: pointer;
+  }
+  &:hover &_wrap {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes run {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

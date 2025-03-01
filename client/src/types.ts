@@ -88,3 +88,11 @@ export type CartItemType = {
   productId: number;
   product: Product;
 };
+
+export type FiltersType = {
+  categoryId: string[];
+  brandId: string[];
+  gender: string;
+  minPrice: number;
+  maxPrice: number;
+};

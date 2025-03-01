@@ -64,17 +64,14 @@ export const ProductTabContent = () => {
       }
     });
 
-    try {
-      const result = await createProduct(formData).unwrap();
-      showNotification(result.message);
+    const result = await createProduct(formData).unwrap();
+    console.log(result);
+    showNotification(result.message);
 
-      setTimeout(() => {
-        setProductData(initialData);
-        setModalActive(false);
-      }, 3020);
-    } catch (err) {
-      showNotification("Error in creating the product");
-    }
+    setTimeout(() => {
+      setProductData(initialData);
+      setModalActive(false);
+    }, 3020);
   };
 
   return (
@@ -160,7 +157,7 @@ export const ProductTabContent = () => {
           <option value="" disabled hidden>
             Select...
           </option>
-          {brands.map((b: Brand) => (
+          {brands?.map((b: Brand) => (
             <option key={b.id} value={b.id} id={String(b.id)}>
               {b.name}
             </option>
@@ -180,7 +177,7 @@ export const ProductTabContent = () => {
           <option value="" disabled hidden>
             Select...
           </option>
-          {categories.map((c: Category) => (
+          {categories?.map((c: Category) => (
             <option value={c.id} id={String(c.id)}>
               {c.name}
             </option>
@@ -195,6 +192,12 @@ export const ProductTabContent = () => {
           <div className={styles.label}>Title</div>
           <div className="">"{i.title}"</div>
           <div className={styles.label}>Description</div>
+          {i.title === "details" && (
+            <span className={styles.label}>
+              {" "}
+              Please list the characteristics by separating them with a comma
+            </span>
+          )}
           <textarea
             name="description"
             id=""

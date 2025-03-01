@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./DropdownMenu.module.scss";
 import { Link } from "react-router";
 import { ReactComponent as Arrow } from "../../assets/dropdown-arrow.svg";

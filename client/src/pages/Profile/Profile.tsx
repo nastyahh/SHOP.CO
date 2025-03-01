@@ -31,12 +31,14 @@ export const Profile = () => {
             >
               Logout
             </button>
-            <button
-              className={`primary-btn ${styles.profile_btn}`}
-              onClick={() => setModalActive(true)}
-            >
-              Open Admin Panel
-            </button>
+            {user.role === "ADMIN" && (
+              <button
+                className={`primary-btn ${styles.profile_btn}`}
+                onClick={() => setModalActive(true)}
+              >
+                Open Admin Panel
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../redux/userSlice";
-import { useNavigate } from "react-router";
-import { HOME_ROUTE } from "../utils/consts";
+import { useLocation, useNavigate } from "react-router";
 
 const useForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -39,7 +39,9 @@ const useForm = () => {
           role: result.user.role,
         })
       );
-      setTimeout(() => navigate(HOME_ROUTE), 2500);
+      setTimeout(() => {
+        location.pathname === "/registration" ? navigate(-2) : navigate(-1);
+      }, 2500);
       return result;
     } catch (error) {
       console.log("Ошибка авторизации:", error);

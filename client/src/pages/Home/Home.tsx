@@ -8,9 +8,11 @@ import { ReactComponent as MiuMiu } from "../../assets/miu-miu.svg";
 import { ReactComponent as Burberry } from "../../assets/burberry.svg";
 import { ReactComponent as Jacquemus } from "../../assets/jacquemus.svg";
 import { ReactComponent as SaintL } from "../../assets/saint-lauren.svg";
+import { ReactComponent as Guess } from "../../assets/guess.svg";
 import { Arrivals } from "../../components/HomeBlocks/NewArrivals/Arrials";
 import { useEffect } from "react";
 import { useAppSelector } from "../../hooks/typedHooks";
+import { RunningLine } from "../../ui-components/RunningLine/RunningLine";
 
 export const Home = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
@@ -19,6 +21,30 @@ export const Home = () => {
     console.log("is auth:", isAuth);
     console.log("user:", user);
   }, []);
+
+  const brands = [
+    {
+      Logo: <CK />,
+      id: 2,
+    },
+    {
+      Logo: <Prada />,
+      id: 4,
+    },
+    {
+      Logo: <Versace />,
+      id: 5,
+    },
+    {
+      Logo: <MiuMiu />,
+      id: 6,
+    },
+    {
+      Logo: <Guess />,
+      id: 12,
+    },
+  ];
+
   return (
     <div className="homewrap">
       <div className={styles.banner}>
@@ -55,17 +81,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className={styles.runningLine}>
-          <div className={styles.runningLine_wrap}>
-            <CK className={styles.runningLine_item} />
-            <Prada className={styles.runningLine_item} />
-            <Versace className={styles.runningLine_item} />
-            <MiuMiu className={styles.runningLine_item} />
-            <Burberry className={styles.runningLine_item} />
-            <Jacquemus className={styles.runningLine_item} />
-            <SaintL className={styles.runningLine_item} />
-          </div>
-        </div>
+        <RunningLine items={brands} />
       </div>
       <div id="arrivals" className={styles.arrivals}>
         <Arrivals />

@@ -1,0 +1,13 @@
+.catalog {
+  display: flex;
+  gap: 25px;
+  &_productsWrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.catalogWrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

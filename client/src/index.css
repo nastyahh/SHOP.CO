@@ -82,6 +82,16 @@ input::-ms-clear {
   display: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 button,
 input[type="submit"] {
   display: inline-block;
@@ -119,4 +129,13 @@ body {
 #root {
   height: 100%;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bebebe;
+  border-radius: 5px;
 }
