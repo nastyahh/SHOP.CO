@@ -49,6 +49,7 @@ export const Auth = () => {
                 value={formState.username}
                 onChange={handleInput}
                 className={styles.auth_input}
+                required
               />
             ) : null}
             <input
@@ -58,6 +59,7 @@ export const Auth = () => {
               value={formState.email}
               onChange={handleInput}
               className={styles.auth_input}
+              required
             />
             <input
               type="password"
@@ -66,6 +68,8 @@ export const Auth = () => {
               value={formState.password}
               onChange={handleInput}
               className={styles.auth_input}
+              minLength={!isLoginPage ? 8 : undefined}
+              required
             />{" "}
             {!isLoginPage && (
               <div className={`${styles.auth_wrap} ${styles.roleWrap}`}>

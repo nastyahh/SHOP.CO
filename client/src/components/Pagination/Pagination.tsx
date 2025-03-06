@@ -16,11 +16,11 @@ export const Pagination = ({ page, setPage, totalCountPages }) => {
     <div className={styles.pagination}>
       <button
         className={`${styles.pagination_btn} ${styles.prev}`}
-        onClick={() =>
-          setPage((prevPage) => {
+        onClick={() => {
+          setPage((prevPage: number) => {
             return Math.max(1, prevPage - 1);
-          })
-        }
+          });
+        }}
         disabled={page <= 1}
       >
         <Arrow />

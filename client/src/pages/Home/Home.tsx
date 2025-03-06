@@ -5,18 +5,21 @@ import { ReactComponent as CK } from "../../assets/calvin.svg";
 import { ReactComponent as Prada } from "../../assets/prada.svg";
 import { ReactComponent as Versace } from "../../assets/versace.svg";
 import { ReactComponent as MiuMiu } from "../../assets/miu-miu.svg";
-import { ReactComponent as Burberry } from "../../assets/burberry.svg";
 import { ReactComponent as Jacquemus } from "../../assets/jacquemus.svg";
 import { ReactComponent as SaintL } from "../../assets/saint-lauren.svg";
-import { ReactComponent as Guess } from "../../assets/guess.svg";
-import { Arrivals } from "../../components/HomeBlocks/NewArrivals/Arrials";
-import { useEffect } from "react";
+import { ReactComponent as Guess } from "@/assets/guess.svg";
+import { ReactComponent as Glamorous } from "../../assets/glamorous.svg";
+import { useEffect, useRef } from "react";
 import { useAppSelector } from "../../hooks/typedHooks";
-import { RunningLine } from "../../ui-components/RunningLine/RunningLine";
+import { Arrivals } from "@/components/HomeBlocks/NewArrivals/Arrivals/Arrials";
+import { RunningLine } from "@/ui-components/RunningLine/RunningLine";
 
 export const Home = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
   const user = useAppSelector((state) => state.user.userData);
+
+  const arrivalsRef = useRef<HTMLDivElement | null>(null);
+  console.log(arrivalsRef.current);
   useEffect(() => {
     console.log("is auth:", isAuth);
     console.log("user:", user);
@@ -42,6 +45,18 @@ export const Home = () => {
     {
       Logo: <Guess />,
       id: 12,
+    },
+    {
+      Logo: <Jacquemus />,
+      id: 8,
+    },
+    {
+      Logo: <SaintL />,
+      id: 14,
+    },
+    {
+      Logo: <Glamorous />,
+      id: 15,
     },
   ];
 
@@ -83,7 +98,7 @@ export const Home = () => {
         </div>
         <RunningLine items={brands} />
       </div>
-      <div id="arrivals" className={styles.arrivals}>
+      <div id="arrivals" className={styles.arrivals} ref={arrivalsRef}>
         <Arrivals />
       </div>
     </div>

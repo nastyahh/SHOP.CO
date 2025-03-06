@@ -1,5 +1,5 @@
 import "../../sharedStyles.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useGetBrandsQuery,
   useGetCategoriesQuery,
@@ -7,6 +7,8 @@ import {
 import styles from "./FilterMenu.module.scss";
 import Slider from "react-slider";
 import { Brand, FiltersType } from "../../types";
+import { useDebounce } from "@/utils/helpers";
+import { useSearchParams } from "react-router";
 
 const MAX = 10000;
 const MIN = 10;
@@ -15,6 +17,8 @@ export const FilterMenu = ({ filters, setFilters }) => {
   const [priceValues, setPriceValues] = useState([MIN, MAX]);
   const { data: categories } = useGetCategoriesQuery("");
   const { data: brands } = useGetBrandsQuery("");
+  const debouncedPrice = useDebounce(priceValues);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -35,14 +39,13 @@ export const FilterMenu = ({ filters, setFilters }) => {
     }
   };
 
-  const handlePriceChange = (values) => {
-    setPriceValues(values);
+  useEffect(() => {
     setFilters((prevFilters: FiltersType) => ({
       ...prevFilters,
-      minPrice: values[0],
-      maxPrice: values[1],
+      minPrice: debouncedPrice[0],
+      maxPrice: debouncedPrice[1],
     }));
-  };
+  }, [debouncedPrice]);
 
   const resetFilters = () => {
     setFilters({
@@ -51,6 +54,7 @@ export const FilterMenu = ({ filters, setFilters }) => {
       gender: "",
     });
     setPriceValues([MIN, MAX]);
+    setSearchParams({});
   };
 
   return (
@@ -81,11 +85,12 @@ export const FilterMenu = ({ filters, setFilters }) => {
           value={priceValues}
           min={MIN}
           max={MAX}
-          onChange={handlePriceChange}
+          onChange={(e) => setPriceValues(e)}
         />
       </div>
       <label>Choose Brands</label>
       <ul className={styles.filterMenu_list}>
+        <hr />
         {brands?.map((b: Brand) => (
           <div className={styles.filterMenu_option}>
             <li key={b.id}>{b.name}</li>
@@ -122,7 +127,11 @@ export const FilterMenu = ({ filters, setFilters }) => {
           />
         </div>
       </div>
-      <button type="button" className="primary-btn" onClick={resetFilters}>
+      <button
+        type="button"
+        className={`primary-btn ${styles.resetBtn}`}
+        onClick={resetFilters}
+      >
         Reset Filters
       </button>
     </form>

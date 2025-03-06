@@ -32,11 +32,35 @@
     align-items: center;
     gap: 5px;
   }
+
   &_user span {
     color: #000;
     font-size: 18px;
     line-height: 18px;
     font-weight: 600;
+  }
+  &_searchContainer {
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 24px;
+      background: url(../../assets/search.svg);
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+    }
+  }
+  &_search {
+    width: 550px;
+    padding: 10px 20px 10px 44px;
+    border-radius: 62px;
+    background: #f0f0f0;
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
   }
 }
 .link {

@@ -1,14 +1,14 @@
 import {
   useGetBrandsQuery,
   useGetProductsQuery,
-} from "../../../redux/productsApi";
-import "../../../App.css";
+} from "../../../../redux/productsApi";
+import "@/App.css";
 import styles from "./Arrivals.module.scss";
-import { ProductCard } from "../../ProductCard/ProductCard";
-import { Product } from "../../../types";
+import { ProductCard } from "../../../ProductCard/ProductCard";
+import { Product } from "../../../../types";
 import { useState } from "react";
-import { findBrand } from "../../../utils/findBrand";
-import "../../../sharedStyles.scss";
+import { findBrand } from "../../../../utils/findBrand";
+import "@/sharedStyles.scss";
 import Masonry from "react-masonry-css";
 
 export const Arrivals = () => {
@@ -41,7 +41,7 @@ export const Arrivals = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" id="arrivals">
       <h2 className="title">NEW ARRIVALS</h2>
       <Masonry
         className="productsGrid"

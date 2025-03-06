@@ -92,5 +92,5 @@ module.exports = {
     Category,
     Brand,
     CategoryBrand,
-    Rating
+    Rating,
 }

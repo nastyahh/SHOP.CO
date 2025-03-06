@@ -12,6 +12,7 @@ import { FiltersType, Product } from "../../types";
 import { findBrand } from "../../utils/findBrand";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { useLocation } from "react-router";
+import notFoundImg from "@/assets/not-found.jpg";
 
 const MAX = 10000;
 const MIN = 10;
@@ -19,7 +20,7 @@ const MIN = 10;
 export const Catalog = () => {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
-
+  const searchParams = queryParams.get("search") || "";
   const { data: brandsData } = useGetBrandsQuery({});
 
   const [filters, setFilters] = useState<FiltersType>({
@@ -39,11 +40,16 @@ export const Catalog = () => {
 
   const products = productsData?.products.rows.map((product: Product) => {
     const brand = findBrand(brandsData, product.brandId);
+
     return {
       ...product,
       brand,
     };
   });
+
+  const searchProducts = products?.filter((p: Product) =>
+    p.name.includes(searchParams)
+  );
 
   return (
     <div className={`container ${styles.catalogWrap}`}>
@@ -51,13 +57,17 @@ export const Catalog = () => {
         <div className={styles.catalog_filterWrap}>
           <FilterMenu filters={filters} setFilters={setFilters} />
         </div>
-        <Masonry className="productsGrid" breakpointCols={{ default: 3 }}>
-          {products?.map((p: Product) => (
-            <div className="productsGrid_item">
-              <ProductCard product={p} />
-            </div>
-          ))}
-        </Masonry>
+        {searchProducts?.length > 0 ? (
+          <Masonry className="productsGrid" breakpointCols={{ default: 3 }}>
+            {searchProducts?.map((p: Product) => (
+              <div className="productsGrid_item">
+                <ProductCard product={p} />
+              </div>
+            ))}
+          </Masonry>
+        ) : (
+          <img src={notFoundImg} className={styles.img_notFound} />
+        )}
       </div>{" "}
       <Pagination
         page={page}

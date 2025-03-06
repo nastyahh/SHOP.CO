@@ -4,7 +4,6 @@ const { Op } = require('sequelize')
 const { Product, ProductInfo, Rating, Brand, User, Category } = require('../models/models')
 const ApiError = require('../error/ApiError');
 const { DESCRIBE } = require('sequelize/lib/query-types');
-
 class ProductController {
     async create(req, res, next) {
         try {
