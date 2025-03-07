@@ -1,0 +1,27 @@
+.collections {
+  &_row,
+  & .imgWrap {
+    display: flex;
+  }
+  & .imgWrap {
+    gap: 24px;
+  }
+  &_row {
+    max-width: 1205px;
+    margin: 0 auto 45px;
+    justify-content: space-between;
+    gap: 60px;
+  }
+  &_descr p {
+    max-width: 448px;
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-bottom: 40px;
+  }
+  &_descr h3 {
+    font-size: 43px;
+  }
+  &_link {
+    padding: 10px 15px;
+  }
+}

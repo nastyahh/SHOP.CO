@@ -63,7 +63,7 @@ export const Header = () => {
           )}
         </div>
         <div className={styles.header_right}>
-          <Link to="/cart">
+          <Link to={isAuth ? "/cart" : "/login"}>
             <Cart />
           </Link>
           <Link to={`${isAuth ? "/profile" : "/login"}`}>

@@ -13,6 +13,7 @@ import { useEffect, useRef } from "react";
 import { useAppSelector } from "../../hooks/typedHooks";
 import { Arrivals } from "@/components/HomeBlocks/NewArrivals/Arrivals/Arrials";
 import { RunningLine } from "@/ui-components/RunningLine/RunningLine";
+import { Collections } from "@/components/HomeBlocks/Collections/Collections";
 
 export const Home = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
@@ -101,6 +102,7 @@ export const Home = () => {
       <div id="arrivals" className={styles.arrivals} ref={arrivalsRef}>
         <Arrivals />
       </div>
+      <Collections />
     </div>
   );
 };

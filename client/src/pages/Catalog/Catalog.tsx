@@ -24,7 +24,7 @@ export const Catalog = () => {
   const { data: brandsData } = useGetBrandsQuery({});
 
   const [filters, setFilters] = useState<FiltersType>({
-    categoryId: [],
+    categoryId: queryParams.getAll("categoryId") || [],
     brandId: queryParams.getAll("brandId") || [],
     gender: queryParams.get("gender") || "",
     minPrice: MIN,
