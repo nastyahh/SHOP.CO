@@ -55,11 +55,21 @@ const CategoryBrand = sequelize.define('category_brand', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 })
 
+const Feedback = sequelize.define('feedback', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    message: { type: DataTypes.STRING },
+    userId: { type: DataTypes.INTEGER, allowNull: true },
+    email: { type: DataTypes.STRING, allowNull: true },
+})
+
 User.hasOne(Cart);
 Cart.belongsTo(User);
 
 User.hasMany(Rating);
 Rating.belongsTo(User);
+
+User.hasMany(Feedback);
+Feedback.belongsTo(User);
 
 Cart.hasMany(CartProduct);
 CartProduct.belongsTo(Cart);
@@ -93,4 +103,5 @@ module.exports = {
     Brand,
     CategoryBrand,
     Rating,
+    Feedback
 }
