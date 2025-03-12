@@ -112,6 +112,20 @@ export const productsApi = createApi({
       query: ({ userId, productId }) =>
         `rating/get-user-rating?userId=${userId}&productId=${productId}`,
     }),
+    verifyReCaptcha: build.mutation({
+      query: (token) => ({
+        url: "recaptcha/verify",
+        method: "POST",
+        body: token,
+      }),
+    }),
+    createFeedback: build.mutation({
+      query: (feedbackData) => ({
+        url: "feedback",
+        method: "POST",
+        body: feedbackData,
+      }),
+    }),
   }),
 });
 
@@ -131,4 +145,6 @@ export const {
   useGetUserRatingQuery,
   useCreateCategoryMutation,
   useCreateBrandMutation,
+  useVerifyReCaptchaMutation,
+  useCreateFeedbackMutation,
 } = productsApi;

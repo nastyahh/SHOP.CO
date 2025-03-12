@@ -8,6 +8,8 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useAppSelector } from "../../hooks/typedHooks";
 import { useDebounce } from "@/utils/helpers";
 import { useEffect, useState } from "react";
+import { useGetCartQuery } from "@/redux/productsApi";
+import { CartItemType } from "@/types";
 
 export const Header = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
@@ -16,6 +18,12 @@ export const Header = () => {
   const debouncedSearch = useDebounce(searchValue);
   const { search, pathname } = useLocation();
   const navigate = useNavigate();
+
+  const { data } = useGetCartQuery(user.id);
+  let cartCount = data.cart_products.reduce(
+    (summ: number, product: CartItemType) => summ + product.quantity,
+    0
+  );
 
   const queryParams = new URLSearchParams(search);
 
@@ -64,7 +72,14 @@ export const Header = () => {
         </div>
         <div className={styles.header_right}>
           <Link to={isAuth ? "/cart" : "/login"}>
-            <Cart />
+            <div className={styles.header_cartWrap}>
+              <Cart />
+              {data.cart_products.length > 0 && (
+                <span className={styles.cart_counter}>
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
+            </div>
           </Link>
           <Link to={`${isAuth ? "/profile" : "/login"}`}>
             {isAuth ? (

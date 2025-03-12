@@ -14,6 +14,7 @@ import { useAppSelector } from "../../hooks/typedHooks";
 import { Arrivals } from "@/components/HomeBlocks/NewArrivals/Arrivals/Arrials";
 import { RunningLine } from "@/ui-components/RunningLine/RunningLine";
 import { Collections } from "@/components/HomeBlocks/Collections/Collections";
+import { ContactUs } from "@/components/HomeBlocks/ContactUs/ContactUs";
 
 export const Home = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
@@ -103,6 +104,7 @@ export const Home = () => {
         <Arrivals />
       </div>
       <Collections />
+      <ContactUs />
     </div>
   );
 };
