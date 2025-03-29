@@ -24,6 +24,7 @@
     padding: 10px 15px;
     background: $beige;
     transition: opacity 0.3s ease;
+    z-index: 50;
     &__item {
       color: #000;
       &:hover {

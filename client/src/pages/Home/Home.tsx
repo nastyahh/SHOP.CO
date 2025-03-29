@@ -15,6 +15,7 @@ import { Arrivals } from "@/components/HomeBlocks/NewArrivals/Arrivals/Arrials";
 import { RunningLine } from "@/ui-components/RunningLine/RunningLine";
 import { Collections } from "@/components/HomeBlocks/Collections/Collections";
 import { ContactUs } from "@/components/HomeBlocks/ContactUs/ContactUs";
+import { Banner } from "@/components/HomeBlocks/Banner/Banner";
 
 export const Home = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
@@ -64,7 +65,7 @@ export const Home = () => {
 
   return (
     <div className="homewrap">
-      <div className={styles.banner}>
+      {/* <div className={styles.banner}>
         <div className={styles.banner_info}>
           <div className="container">
             <h1 className={styles.banner_title}>
@@ -99,7 +100,8 @@ export const Home = () => {
           </div>
         </div>
         <RunningLine items={brands} />
-      </div>
+      </div> */}
+      <Banner />
       <div id="arrivals" className={styles.arrivals} ref={arrivalsRef}>
         <Arrivals />
       </div>

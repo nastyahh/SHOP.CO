@@ -1,10 +1,11 @@
 @import url(../../App.css);
 
 .banner {
-  background: url(../../assets/banner-bg.png) no-repeat center/cover;
+  background: url(/banner-bg-2.png) no-repeat center/cover;
   color: #fff;
   &_info {
     padding: 103px 0 116px;
+    color: #fff;
   }
   &_title {
     leading-trim: both;
@@ -77,4 +78,87 @@
 
 .arrivals {
   padding: 72px 0 64px;
+}
+
+.slider__item {
+  overflow: hidden;
+  height: 800px;
+  &_bg {
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &.second {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url(/banner-bg-4.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      filter: blur(5px);
+      opacity: 1;
+      z-index: -1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 50%;
+      height: 100%;
+      background: url(/banner-bg-4.png);
+      z-index: -1;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        white 100%,
+
+        transparent
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        white 75%,
+        white 25%,
+        transparent
+      );
+    }
+
+    & .banner_info {
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &.third {
+    position: relative;
+    background: url(/banner-bg-3.png) no-repeat center/cover;
+
+    & .banner_info {
+      position: absolute;
+      top: 15%;
+      left: 20%;
+      color: #000;
+    }
+
+    & .banner_title {
+      color: #c9c1b5c4;
+      -webkit-text-stroke: 1px #89897c; /* Толщина и цвет обводки */
+      text-stroke: 1px #89897c;
+    }
+
+    & .banner_textSmall {
+      margin: 15px 0 32px;
+      color: #000;
+    }
+  }
 }

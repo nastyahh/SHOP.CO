@@ -50,9 +50,8 @@ class ProductController {
             where.categoryId = { [Op.in]: categoryId.split(',') }
         }
         if (minPrice) where.price = { ...where.price, [Op.gte]: minPrice }
-        if (minPrice) where.price = { ...where.price, [Op.lte]: maxPrice }
+        if (maxPrice) where.price = { ...where.price, [Op.lte]: maxPrice }
         if (gender) {
-            console.log('gender', gender)
             where.gender = gender
         };
 
@@ -62,6 +61,25 @@ class ProductController {
             offset,
         })
         const totalPages = Math.ceil(products.count / limit)
+
+        // const productsWithDiscount = products.rows.map((p) => {
+        //     const currentDate = new Date()
+        //     let priceWithDiscount = p.price;
+
+        //     if (p.discount > 0) {
+        //         console.log("p.discountStartDate", p.discountStartDate)
+        //         if (
+        //             (p.discountStartDate && currentDate >= new Date(p.discountStartDate)) &&
+        //             (p.discountEndDate && currentDate <= new Date(p.discountEndDate))
+        //         ) {
+        //             priceWithDiscount = p.price * (1 - p.discount / 100)
+        //         }
+        //     }
+        //     return {
+        //         ...p.dataValues,
+        //         priceWithDiscount,
+        //     };
+        // })
 
         return res.json({ products: products, totalCountPages: totalPages });
     }

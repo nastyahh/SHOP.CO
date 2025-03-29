@@ -8,7 +8,6 @@ import { CartItemType } from "../../types";
 export const Cart = () => {
   const user = useAppSelector((state) => state.user.userData);
   const { data } = useGetCartQuery(user.id);
-  console.log(data);
 
   if (!data) return null;
 

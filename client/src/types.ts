@@ -69,6 +69,8 @@ export type INotificationContext = {
 export type modalContextProps = {
   isModalActive: boolean;
   setModalActive: (active: boolean) => void;
+  modalContent: React.ReactNode | null;
+  setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode | null>>;
 };
 
 export type InfoItem = {

@@ -20,7 +20,7 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const { data } = useGetCartQuery(user.id);
-  let cartCount = data.cart_products.reduce(
+  let cartCount = data?.cart_products?.reduce(
     (summ: number, product: CartItemType) => summ + product.quantity,
     0
   );
@@ -74,7 +74,7 @@ export const Header = () => {
           <Link to={isAuth ? "/cart" : "/login"}>
             <div className={styles.header_cartWrap}>
               <Cart />
-              {data.cart_products.length > 0 && (
+              {isAuth && data?.cart_products.length > 0 && (
                 <span className={styles.cart_counter}>
                   {cartCount > 99 ? "99+" : cartCount}
                 </span>

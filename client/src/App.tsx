@@ -10,7 +10,8 @@ import { ModalContext } from "./HOC/ModalProvider";
 import { createPortal } from "react-dom";
 
 export const App = () => {
-  const { isModalActive, setModalActive } = useContext(ModalContext);
+  const { isModalActive, setModalActive, modalContent, setModalContent } =
+    useContext(ModalContext);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { data, error } = useCheckAuthQuery("");
@@ -41,6 +42,8 @@ export const App = () => {
             <Modal
               isModalActive={isModalActive}
               setModalActive={setModalActive}
+              modalContent={modalContent}
+              setModalContent={setModalContent}
             />,
             document.body
           )}

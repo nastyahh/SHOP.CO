@@ -76,6 +76,13 @@ export const productsApi = createApi({
         return { ...response, user: decodedToken };
       },
     }),
+    changePassword: build.mutation({
+      query: (passwordData) => ({
+        url: "user/change-password",
+        method: "PATCH",
+        body: passwordData,
+      }),
+    }),
     checkAuth: build.query({
       query: () => "user/auth",
       keepUnusedDataFor: 5,
@@ -147,4 +154,5 @@ export const {
   useCreateBrandMutation,
   useVerifyReCaptchaMutation,
   useCreateFeedbackMutation,
+  useChangePasswordMutation,
 } = productsApi;

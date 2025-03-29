@@ -26,6 +26,9 @@ const Product = sequelize.define('product', {
     rating: { type: DataTypes.FLOAT, defaultValue: 0 },
     img: { type: DataTypes.STRING, allowNull: false },
     gender: { type: DataTypes.STRING, allowNull: false },
+    discount: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
+    discountStartDate: { type: DataTypes.DATE },
+    discountEndDate: { type: DataTypes.DATE },
 })
 
 const Category = sequelize.define('category', {

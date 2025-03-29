@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+@use "../../colors.scss" as colors;
 
 .modal {
   width: 100vw;
@@ -24,10 +24,6 @@
     background: #fff;
     border-radius: 20px;
   }
-}
-.tabContent {
-  display: flex;
-  flex-direction: column;
   & input:not([type="file"]),
   & select,
   textarea {
@@ -37,6 +33,11 @@
     font-size: 18px;
     margin-bottom: 10px;
   }
+}
+.tabContent {
+  display: flex;
+  flex-direction: column;
+
   & input:not([type="file"]) {
     width: 60%;
   }
@@ -77,7 +78,7 @@
       color: rgb(255 255 255);
       text-align: center;
       border-radius: 10px;
-      background-color: $gray;
+      background-color: colors.$gray;
       line-height: 22px;
       height: 40px;
       padding: 10px 20px;
@@ -92,7 +93,7 @@
   }
   & .label_info {
     font-size: 22px;
-    color: $gray;
+    color: colors.$gray;
   }
   &_btn {
     width: 140px;

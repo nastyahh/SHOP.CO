@@ -53,6 +53,27 @@ class UserController {
         const token = generateJwt(req.user.id, req.user.username, req.user.email, req.user.role)
         return res.json({ token })
     }
+
+    async changePassword(req, res, next) {
+        const { userId, current_password, new_password } = req.body;
+
+        const user = await User.findOne({ where: { id: userId } })
+        console.log("currenr", current_password)
+        console.log("user", user.password)
+        const isMatch = await bcrypt.compare(current_password, user.password);
+
+
+        if (!isMatch) {
+            return next(ApiError.badRequest("Current password doesn`t match"))
+        }
+
+        const hashedPassword = await bcrypt.hash(new_password, 5)
+
+        await User.update({ password: hashedPassword }, { where: { id: userId } })
+
+        return res.json({ message: "Password successfully changed" })
+
+    }
 }
 
 module.exports = new UserController();
