@@ -22,7 +22,7 @@ export const Home = () => {
   const user = useAppSelector((state) => state.user.userData);
 
   const arrivalsRef = useRef<HTMLDivElement | null>(null);
-  console.log(arrivalsRef.current);
+
   useEffect(() => {
     console.log("is auth:", isAuth);
     console.log("user:", user);

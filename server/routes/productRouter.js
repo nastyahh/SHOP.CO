@@ -4,6 +4,7 @@ const ProductController = require('../controllers/productController')
 const checkRole = require('../middleware/checkRoleMiddleware')
 
 router.post('/', checkRole("ADMIN"), ProductController.create)
+router.patch('/', checkRole("ADMIN"), ProductController.update)
 router.get('/', ProductController.getAll)
 router.get('/:id', ProductController.getOne)
 

@@ -29,6 +29,7 @@ export type Product = {
 };
 
 export type ProductData = {
+  id?: string | null;
   name: string;
   price: string;
   img: File | null;
@@ -36,6 +37,9 @@ export type ProductData = {
   categoryId: string;
   brandId: string;
   info: { title: string; description: string }[];
+  discount?: number | null;
+  discountStartDate?: string | null;
+  discountEndDate?: string | null;
 };
 
 type IdentifiableOption = {

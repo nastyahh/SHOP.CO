@@ -8,8 +8,6 @@
     color: #fff;
   }
   &_title {
-    leading-trim: both;
-    text-edge: cap;
     font-family: "Integral CF";
     font-size: 64px;
     font-style: normal;
@@ -152,7 +150,7 @@
 
     & .banner_title {
       color: #c9c1b5c4;
-      -webkit-text-stroke: 1px #89897c; /* Толщина и цвет обводки */
+      -webkit-text-stroke: 1px #89897c;
       text-stroke: 1px #89897c;
     }
 

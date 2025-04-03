@@ -8,12 +8,13 @@ import { Link } from "react-router";
 export const Banner = () => {
   var settings = {
     dots: true,
+    loop: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     speed: 1100,
-    // autoplaySpeed: 4000,
+    autoplaySpeed: 4000,
     cssEase: "linear",
   };
 

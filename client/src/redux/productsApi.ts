@@ -33,6 +33,14 @@ export const productsApi = createApi({
       query: (id) => `product/${id}`,
       providesTags: ["Product"],
     }),
+    updateProduct: build.mutation({
+      query: (formData) => ({
+        url: "product",
+        method: "PATCH",
+        body: formData,
+      }),
+      invalidatesTags: ["Product"],
+    }),
     getBrands: build.query({
       query: () => "brand",
     }),
@@ -155,4 +163,5 @@ export const {
   useVerifyReCaptchaMutation,
   useCreateFeedbackMutation,
   useChangePasswordMutation,
+  useUpdateProductMutation,
 } = productsApi;

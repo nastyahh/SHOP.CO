@@ -15,7 +15,7 @@ export const AdminModal = () => {
 
   const tabs = [
     {
-      title: "product",
+      title: "create product",
       content: <ProductTabContent />,
     },
     {
@@ -40,6 +40,10 @@ export const AdminModal = () => {
         />
       ),
     },
+    // {
+    //   title: "edit product",
+    //   content: <EditProductTab />,
+    // },
   ];
 
   return (

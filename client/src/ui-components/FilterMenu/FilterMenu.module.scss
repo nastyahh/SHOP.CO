@@ -10,6 +10,9 @@
     align-items: center;
     gap: 7px;
     justify-content: space-between;
+    & input {
+      width: auto;
+    }
   }
   &_list {
     position: relative;

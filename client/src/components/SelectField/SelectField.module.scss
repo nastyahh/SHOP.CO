@@ -1,0 +1,9 @@
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 18px;
+  color: rgba($color: #000000, $alpha: 0.5);
+  margin-bottom: 5px;
+}

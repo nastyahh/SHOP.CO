@@ -14,6 +14,7 @@ import Masonry from "react-masonry-css";
 export const Arrivals = () => {
   const { data: productsData, isLoading: isProductsLoading } =
     useGetProductsQuery({ limit: 8 });
+  console.log(productsData);
   const { data: brandsData, isLoading: isBrandsLoading } =
     useGetBrandsQuery("");
 
@@ -23,7 +24,7 @@ export const Arrivals = () => {
     return null;
   }
 
-  const products = productsData?.products.rows.map((product: Product) => {
+  const products = productsData?.products.map((product: Product) => {
     const brand = findBrand(brandsData, product.brandId);
     return {
       ...product,

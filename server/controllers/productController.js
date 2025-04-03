@@ -8,7 +8,11 @@ class ProductController {
     async create(req, res, next) {
         try {
             const { name, price, brandId, categoryId, info, gender } = req.body;
+            console.log("Content-Type:", req.headers['content-type']);
+            console.log("BODY:", req.body);
+            console.log("FILES:", req.files);
             const { img } = req.files;
+
 
             let fileName = uuid.v4() + ".jpg"; //генерируем айди для картинки
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -62,26 +66,26 @@ class ProductController {
         })
         const totalPages = Math.ceil(products.count / limit)
 
-        // const productsWithDiscount = products.rows.map((p) => {
-        //     const currentDate = new Date()
-        //     let priceWithDiscount = p.price;
+        const productsWithDiscount = products.rows.map((p) => {
+            const currentDate = new Date()
+            let priceWithDiscount = p.price;
 
-        //     if (p.discount > 0) {
-        //         console.log("p.discountStartDate", p.discountStartDate)
-        //         if (
-        //             (p.discountStartDate && currentDate >= new Date(p.discountStartDate)) &&
-        //             (p.discountEndDate && currentDate <= new Date(p.discountEndDate))
-        //         ) {
-        //             priceWithDiscount = p.price * (1 - p.discount / 100)
-        //         }
-        //     }
-        //     return {
-        //         ...p.dataValues,
-        //         priceWithDiscount,
-        //     };
-        // })
+            if (p.discount > 0 && p.discountStartDate && p.discountEndDate) {
+                console.log("p.discountStartDate", p.discountStartDate)
+                if (
+                    (p.discountStartDate && currentDate >= new Date(p.discountStartDate)) &&
+                    (p.discountEndDate && currentDate <= new Date(p.discountEndDate))
+                ) {
+                    priceWithDiscount = p.price * (1 - p.discount / 100)
+                }
+            }
+            return {
+                ...p.dataValues,
+                priceWithDiscount,
+            };
+        })
 
-        return res.json({ products: products, totalCountPages: totalPages });
+        return res.json({ products: productsWithDiscount, totalCountPages: totalPages });
     }
 
     async getOne(req, res) {
@@ -93,6 +97,9 @@ class ProductController {
             ]
         })
 
+        if (!product) {
+            return res.json({ message: "Product not found" })
+        }
 
         const ratings = await Rating.findAll({
             where: { productId: id },
@@ -103,6 +110,38 @@ class ProductController {
         })
 
         return res.json({ product, ratings })
+    }
+
+    async update(req, res) {
+        console.log("req.body", req.body)
+        const { id, name, price, brandId, categoryId, info, gender, discount, discountStartDate, discountEndDate } = req.body;
+
+        const product = await Product.findOne({ where: { id } })
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        if (req.files?.img) {
+            const fileName = uuid.v4() + ".jpg";
+            req.files.img.mv(path.resolve(__dirname, '..', 'static', fileName));
+            product.img = fileName;
+        }
+
+        const updatedFields = Object.fromEntries(Object.entries({ name, price, brandId, categoryId, gender, discount, discountStartDate, discountEndDate }).filter((_, value) => value != undefined))
+
+        await product.update(updatedFields);
+
+        if (info) {
+            await ProductInfo.destroy({ where: { productId: id } });
+            const parsedInfo = JSON.parse(info);
+            await ProductInfo.bulkCreate(parsedInfo.map(i => ({
+                title: i.title,
+                description: i.description,
+                productId: id
+            })));
+        }
+
+        return res.json({ message: "Product successfully updated", product });
     }
 }
 

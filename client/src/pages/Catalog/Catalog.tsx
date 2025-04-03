@@ -21,7 +21,9 @@ export const Catalog = () => {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const searchParams = queryParams.get("search") || "";
-  const { data: brandsData } = useGetBrandsQuery({});
+  const { data: brandsData, isLoading: BrandsDataLoading } = useGetBrandsQuery(
+    {}
+  );
 
   const [filters, setFilters] = useState<FiltersType>({
     categoryId: queryParams.getAll("categoryId") || [],
@@ -38,7 +40,7 @@ export const Catalog = () => {
     page,
   });
 
-  const products = productsData?.products.rows.map((product: Product) => {
+  const products = productsData?.products.map((product: Product) => {
     const brand = findBrand(brandsData, product.brandId);
 
     return {
