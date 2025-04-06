@@ -22,7 +22,7 @@ export const StarRating = ({
 
   return (
     <div className={styles.rating} style={propsStyles}>
-      {stars.map((elem, index) => {
+      {stars.map((index) => {
         const isFill = index <= currentItem;
         const isHover = index <= hoverItem;
         return (

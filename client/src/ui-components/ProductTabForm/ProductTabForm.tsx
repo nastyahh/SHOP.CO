@@ -1,7 +1,7 @@
 import { Input } from "@/components/Input/Input";
 import styles from "@/components/Modal/Modal.module.scss";
 import { SelectField } from "@/components/SelectField/SelectField";
-import { Brand, Category, ProductData } from "@/types";
+import { Brand, Category } from "@/types";
 import { handleInput } from "@/utils/formHandlers";
 
 export const ProductTabForm = ({
@@ -40,7 +40,7 @@ export const ProductTabForm = ({
       )}
       <Input
         label="Name"
-        required
+        required={createMode}
         type="text"
         placeholder="Enter product name"
         name="name"
@@ -49,7 +49,7 @@ export const ProductTabForm = ({
       />
       <Input
         label="Price"
-        required
+        required={createMode}
         type="number"
         placeholder="Enter product price"
         name="price"
@@ -81,7 +81,7 @@ export const ProductTabForm = ({
       </div>
       <SelectField
         label="Gander"
-        required={true}
+        required={createMode}
         name="gender"
         id="gender"
         onChange={(e) => handleInput(e, setProductData)}
@@ -96,7 +96,7 @@ export const ProductTabForm = ({
         name="brandId"
         id="brandId"
         onChange={(e) => handleInput(e, setProductData)}
-        required={true}
+        required={createMode}
         value={productData.brandId}
         options={
           brands?.map((b: Brand) => ({ value: b.id, label: b.name })) || []
@@ -104,7 +104,7 @@ export const ProductTabForm = ({
       />
       <SelectField
         label="Category"
-        required={true}
+        required={createMode}
         name="categoryId"
         onChange={(e) => handleInput(e, setProductData)}
         value={productData.categoryId}
@@ -116,26 +116,27 @@ export const ProductTabForm = ({
       <label className={`${styles.label} ${styles.label_info}`}>
         Product Info
       </label>
-      {productData.info.map((i, index) => (
-        <div className={styles.inputWrap}>
-          <div className={styles.label}>Title</div>
-          <div className="">"{i.title}"</div>
-          <div className={styles.label}>Description</div>
-          {i.title === "details" && (
-            <span className={styles.label}>
-              {" "}
-              Please list the characteristics by separating them with a comma
-            </span>
-          )}
-          <textarea
-            name="description"
-            id=""
-            onChange={(e) => handleInfo(index, e)}
-            rows={4}
-            value={i.description}
-          />
-        </div>
-      ))}
+      {productData.info.map(
+        (i: { title: string; description: string }, index: number) => (
+          <div className={styles.inputWrap} key={index}>
+            <div className={styles.label}>Title</div>
+            <div className="">"{i.title}"</div>
+            <div className={styles.label}>Description</div>
+            {i.title === "details" && (
+              <span className={styles.label}>
+                {" "}
+                Please list the characteristics by separating them with a comma
+              </span>
+            )}
+            <textarea
+              name="description"
+              onChange={(e) => handleInfo(index, e)}
+              rows={4}
+              value={i.description}
+            />
+          </div>
+        )
+      )}
       <Input
         label="Discount"
         name="discount"
@@ -148,9 +149,10 @@ export const ProductTabForm = ({
           }
         }}
       />
-      {productData.discount !== 0 && (
+      {productData.discount !== null && (
         <>
           <Input
+            required={true}
             label="Discount Start Date"
             name="discountStartDate"
             type="date"
@@ -158,6 +160,7 @@ export const ProductTabForm = ({
             onChange={(e) => handleInput(e, setProductData)}
           />
           <Input
+            required={true}
             label="Discount End Date"
             name="discountEndDate"
             type="date"

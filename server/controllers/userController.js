@@ -1,15 +1,20 @@
 const ApiError = require('../error/ApiError')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { User, Cart } = require('../models/models')
+const uuid = require('uuid')
+const path = require('path')
 
 const generateJwt = (id, username, email, role) => {
     return jwt.sign({ id, username, email, role }, process.env.SECRET_KEY, { expiresIn: '24h' })
 }
 
+
 class UserController {
     async registration(req, res, next) {
         const { username, email, password, role } = req.body
+        console.log(req.files)
+
         if (!email || !password) {
             return next(ApiError.badRequest('Incorrect email or password'))
         }

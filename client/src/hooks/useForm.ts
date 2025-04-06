@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../redux/userSlice";
 import { useLocation, useNavigate } from "react-router";
+import { User } from "@/types";
 
 const useForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<User>({
     username: "",
     email: "",
     password: "",
@@ -49,7 +50,7 @@ const useForm = () => {
     }
   };
 
-  return { handleForm, handleInput, formState };
+  return { handleForm, handleInput, formState, setFormState };
 };
 
 export default useForm;

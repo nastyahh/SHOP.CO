@@ -21,9 +21,7 @@ export const Catalog = () => {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const searchParams = queryParams.get("search") || "";
-  const { data: brandsData, isLoading: BrandsDataLoading } = useGetBrandsQuery(
-    {}
-  );
+  const { data: brandsData } = useGetBrandsQuery({});
 
   const [filters, setFilters] = useState<FiltersType>({
     categoryId: queryParams.getAll("categoryId") || [],

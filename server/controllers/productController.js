@@ -8,11 +8,7 @@ class ProductController {
     async create(req, res, next) {
         try {
             const { name, price, brandId, categoryId, info, gender } = req.body;
-            console.log("Content-Type:", req.headers['content-type']);
-            console.log("BODY:", req.body);
-            console.log("FILES:", req.files);
             const { img } = req.files;
-
 
             let fileName = uuid.v4() + ".jpg"; //генерируем айди для картинки
             img.mv(path.resolve(__dirname, '..', 'static', fileName))

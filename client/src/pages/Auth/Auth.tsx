@@ -42,15 +42,17 @@ export const Auth = () => {
               className={`${styles.auth_img} ${styles.auth_img_2}`}
             />
             {!isLoginPage ? (
-              <input
-                type="text"
-                placeholder="Your Username"
-                name="username"
-                value={formState.username}
-                onChange={handleInput}
-                className={styles.auth_input}
-                required
-              />
+              <>
+                <input
+                  type="text"
+                  placeholder="Your Username"
+                  name="username"
+                  value={formState.username}
+                  onChange={handleInput}
+                  className={styles.auth_input}
+                  required
+                />
+              </>
             ) : null}
             <input
               type="email"

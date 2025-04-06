@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { StarRating } from "../StarRating/StarRating";
 import styles from "./ReviewForm.module.scss";
 import { useAppSelector } from "../../hooks/typedHooks";

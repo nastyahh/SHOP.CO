@@ -4,6 +4,13 @@ export type Children = {
   children?: ReactNode;
 };
 
+export type JwtPayload = {
+  id: string;
+  username: string;
+  email: string;
+  role: string;
+};
+
 export type DropdownOption = {
   link: string;
   label: string;
@@ -12,6 +19,13 @@ export type DropdownOption = {
 export type DropdownOptions = {
   title: string;
   options: DropdownOption[];
+};
+
+export type User = {
+  username: string;
+  email: string;
+  password: string;
+  role: string;
 };
 
 export type Product = {
@@ -93,6 +107,7 @@ export type CartItemType = {
   cartId: number;
   productId: number;
   product: Product;
+  count?: number;
 };
 
 export type FiltersType = {

@@ -40,10 +40,6 @@ export const AdminModal = () => {
         />
       ),
     },
-    // {
-    //   title: "edit product",
-    //   content: <EditProductTab />,
-    // },
   ];
 
   return (

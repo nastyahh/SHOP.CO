@@ -18,7 +18,7 @@ export const FilterMenu = ({ filters, setFilters }) => {
   const { data: categories } = useGetCategoriesQuery("");
   const { data: brands } = useGetBrandsQuery("");
   const debouncedPrice = useDebounce(priceValues);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;

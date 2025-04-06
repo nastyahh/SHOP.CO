@@ -8,6 +8,7 @@ import { UserNotification } from "./ui-components/UserNotification/UserNotificat
 import { Modal } from "./components/Modal/Modal";
 import { ModalContext } from "./HOC/ModalProvider";
 import { createPortal } from "react-dom";
+import { JwtPayload } from "./types";
 
 export const App = () => {
   const { isModalActive, setModalActive, modalContent, setModalContent } =
@@ -19,7 +20,7 @@ export const App = () => {
   useEffect(() => {
     if (data) {
       localStorage.setItem("token", data.token);
-      const decoded = jwtDecode(data.token);
+      const decoded = jwtDecode<JwtPayload>(data.token);
       const { id, username, email, role } = decoded;
 
       dispatch(setAuth({ id, username, email, role }));

@@ -5,6 +5,7 @@ import { handleInput, handleSubmit } from "@/utils/formHandlers";
 import { useAppSelector } from "@/hooks/typedHooks";
 import { useChangePasswordMutation } from "@/redux/productsApi";
 import { NotificationContext } from "@/HOC/NotificationProvider";
+import { Input } from "../Input/Input";
 
 export const PasswordModal = () => {
   const [changePassword] = useChangePasswordMutation();
@@ -15,14 +16,6 @@ export const PasswordModal = () => {
     current_password: "",
     new_password: "",
   });
-
-  console.log(id);
-
-  // const handleSub = async (e) => {
-  //   e.preventDefault();
-  //   console.log({ userId: id, ...formState });
-  //   await changePassword({ userId: id, ...formState });
-  // };
 
   return (
     <div className={styles.contentWrap}>
@@ -42,23 +35,23 @@ export const PasswordModal = () => {
           );
         }}
       >
-        <div className={styles.inputWrap}>
-          <input
-            type="password"
-            name="current_password"
-            placeholder="Enter your current password"
-            onChange={(e) => handleInput(e, setFormState)}
-            value={formState.current_password}
-          />
-          <input
-            type="text"
-            placeholder="Enter your new password"
-            name="new_password"
-            onChange={(e) => handleInput(e, setFormState)}
-            value={formState.new_password}
-          />
-        </div>
-        <button type="submit" className={`primary-btn`}>
+        <Input
+          label="Your current password"
+          name="current_password"
+          type="password"
+          placeholder="Enter..."
+          value={formState.current_password}
+          onChange={(e) => handleInput(e, setFormState)}
+        />
+        <Input
+          label="Your new password"
+          type="password"
+          placeholder="Enter..."
+          name="new_password"
+          onChange={(e) => handleInput(e, setFormState)}
+          value={formState.new_password}
+        />
+        <button type="submit" className={`primary-btn ${styles.submitBtn}`}>
           Submit
         </button>
       </form>

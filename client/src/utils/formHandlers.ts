@@ -1,6 +1,6 @@
-type ApiResponse =
-  | { data: { message: string } }
-  | { error: { data: { message: string } } };
+// type ApiResponse =
+//   | { data: { message: string } }
+//   | { error: { data: { message: string } } };
 
 export const handleInput = <T extends object>(
   e: React.ChangeEvent<
@@ -18,7 +18,7 @@ export const handleInput = <T extends object>(
 
 export const handleSubmit = async <T>(
   e: React.FormEvent<HTMLFormElement>,
-  request: (data: T) => Promise<ApiResponse>,
+  request: (data: T) => Promise<{ data?: any; error?: any }>,
   reqData: T,
   showNotification: (message: string) => void,
   resetState: () => void

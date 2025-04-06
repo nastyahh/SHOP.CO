@@ -50,11 +50,7 @@ export const ProductTabContent = () => {
     Object.entries(productData).forEach(([key, value]) => {
       if (key === "info")
         formData.append(key, JSON.stringify(productData.info));
-      else if (
-        // value instanceof File ||
-        typeof value === "string" ||
-        typeof value === "number"
-      ) {
+      else if (typeof value === "string" || typeof value === "number") {
         formData.append(key, String(value));
       } else if (value instanceof File) {
         formData.append(key, value);
